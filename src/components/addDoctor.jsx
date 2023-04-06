@@ -22,10 +22,11 @@ export default function AddDoctor() {
       },
     }
     const result = await axios.post("http://172.16.138.189:8080/doc/register",cred,config);
-    // if(result.data){
-    //   const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
-    //   const res = await axios.post("http://172.16.138.189:8080/doc/add",details,config);
-    // }
+    if(result.data){
+      const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
+      const res = await axios.post("http://172.16.138.189:8080/doc/add",details,config);
+      console.log(res);
+    }
     console.log(result);
     //1 is Did
   };
@@ -40,11 +41,11 @@ export default function AddDoctor() {
             <div style={{ textAlign: "center" }}>
               <h2>Add New Doctor</h2>
             </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">UserName</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail1">UserName</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Enter Username"
@@ -52,11 +53,11 @@ export default function AddDoctor() {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div class="form-group">
-              <label for="exampleInputEmail2">Email</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail2">Email</label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail2"
                 aria-describedby="emailHelp"
                 placeholder="Enter Username"
@@ -64,11 +65,11 @@ export default function AddDoctor() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div class="form-group">
-              <label for="exampleInputEmail3">License</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail3">License</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail3"
                 aria-describedby="emailHelp"
                 placeholder="Enter License Number"
@@ -76,11 +77,11 @@ export default function AddDoctor() {
                 onChange={(e) => setLic(e.target.value)}
               />
             </div>
-            <div class="form-group">
-              <label for="exampleInputEmail4">Qualification</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail4">Qualification</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail4"
                 aria-describedby="emailHelp"
                 placeholder="Qualification"
@@ -88,11 +89,11 @@ export default function AddDoctor() {
                 onChange={(e) => setQual(e.target.value)}
               />
             </div>
-            <div class="form-group">
-              <label for="exampleInputEmail5">Specialization</label>
+            <div className="form-group">
+              <label htmlFor="exampleInputEmail5">Specialization</label>
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail5"
                 aria-describedby="emailHelp"
                 placeholder="Qualification"
@@ -103,7 +104,7 @@ export default function AddDoctor() {
             {/* <Link to={`/admin/home`} style={{ textDecoration: "none" }}> */}
             <button
               type="submit"
-              class="btn btn-dark"
+              className="btn btn-dark"
               style={{ borderRadius: "0", width: "100%", margin: "1rem 0" }}
             >
               Submit
