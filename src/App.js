@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Footer from './components/footer';
+import Navbar from './components/navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/home';
+import AdminLogin from './components/adminLogin';
+import DoctorLogin from './components/doctorLogin';
+import AdminHome from './components/adminHome';
+import AddDoctor from './components/addDoctor';
+import Tryapi from './components/tryapis';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <Router>
+        <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route path="/admin/login" element={<AdminLogin/>}/>
+        <Route path="/doctor/login" element={<DoctorLogin/>}/>
+        <Route path="/admin/home" element={<AdminHome/>}/>
+        <Route path="/admin/add" element={<AddDoctor/>}/>
+        <Route path="/try/api" element={<Tryapi/>}/>
+        </Routes>
+        <Footer/>
+      </Router> 
     </div>
   );
 }
