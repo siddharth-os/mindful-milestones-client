@@ -22,13 +22,13 @@ export default function AddDoctor() {
       },
     }
     const result = await axios.post("http://172.16.138.189:8080/doc/register",cred,config);
-    if(result.data){
+    if(result){
       const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
       const res = await axios.post("http://172.16.138.189:8080/doc/add",details,config);
       console.log(res);
     }
-    console.log(result);
-    //1 is Did
+    console.log(result.data);
+    // //1 is Did
   };
   return (
     <div className="container row">

@@ -3,8 +3,8 @@ import React from "react";
 export default function DoctorsList() {
   const arr = [1, 2, 3, 4, 5, 6,7,8,9,10,11];
   return (
-    <table class="table doc-list-table" style={{}}>
-      <thead>
+    <table className="table doc-list-table" style={{}}>
+      <thead style={{}}>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>

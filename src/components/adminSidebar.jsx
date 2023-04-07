@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import AdminSideBarUl from "./adminSidebarUl";
 export default function AdminSidebar() {
   return (
-    <div className="sidebar bg-light" style={{ textAlign: "center" }}>
+    <div className="sidebar bg-light" style={{ textAlign: "center",boxShadow:"5px 5px 5px gray" }}>
       <div
         style={{
           display: "flex",
