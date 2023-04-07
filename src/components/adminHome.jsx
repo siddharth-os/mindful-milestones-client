@@ -2,22 +2,21 @@ import React, { useState } from "react";
 import DoctorsList from "./doctorsList";
 import AdminSidebar from "./adminSidebar";
 import axios from "axios";
+import { isTokenExist } from "../auth/auth";
+import NotLoggedIn from "../auth/handleNotLoggedIn";
+import { useNavigate } from "react-router-dom";
 export default function AdminHome() {
     const cardStyle={
         padding:"1rem",
         paddingLeft:"2rem",
         boxShadow:"6px 5px 8px gray",
         opacity:"1",
-        // borderTopRightRadius:"50px",
-        // borderBottomLeftRadius:"50px",
-        // backgroundImage: "linear-gradient(to right bottom, #ffffff, #f6f6f9, #ecedf2, #e2e4ec, #d8dce6, #d0dbeb, #c6daef, #badaf2, #a5e2fc, #8bebff, #71f3fd, #5ffbf1)",
-        // backgroundImage: "linear-gradient(to right bottom, #11d7cc, #40d4de, #69cfe6, #8ccae6, #a7c6df, #aac7dd, #aec7dc, #b1c8da, #a4cddf, #95d1e0, #88d6dd, #80dad4)"
-      
-        // // background: "rgb(255,255,255)",
-        // background: "linear-gradient(90deg, rgba(255,255,255,1) 3%, rgba(173,173,173,1) 6%, rgba(247,247,250,1) 11%, rgba(121,227,211,1) 70%)"
     };
     const [doclist,setDoclist]=useState([]);
+    const [isToken,setIsToken]=useState(false);
+    const navigate = useNavigate();
     useState(()=>{
+      setIsToken(isTokenExist());
       const fetchAllDoctors=async()=>{
         const token = 'Bearer '+localStorage.getItem('jwtToken');
         console.log(token);
@@ -26,13 +25,27 @@ export default function AdminHome() {
               'Authorization':token,
             },
           }
-        const result= await axios.get("http://172.16.138.189:8080/doc/getall",config);
-        // setDoclist(result.data[0]);
-        // console.log(doclist);
+        // const result= await axios.get("http://172.16.138.189:8080/doc/getall",config);
+        const result= await axios.get("http://localhost:8080/doc/getall",config);
         console.log(result.data);
       };
-      fetchAllDoctors();
     },[]);
+    const directToDoctor=()=>{
+      navigate("/doctor/login");
+    }
+    const directToAdmin=()=>{
+      navigate("/admin/login");
+    }
+    if(!isToken){
+      return(
+        <div className="container" style={{margin:"1rem auto"}}>
+          <h2>You are Not Logged In!!! Please Login.</h2>
+          <button className="btn btn-dark" onClick={directToAdmin} style={{borderRadius:"0",marginRight:"1rem"}}>Admin</button>
+          <button className="btn btn-dark" onClick={directToDoctor} style={{borderRadius:"0"}}>Doctor</button>
+        </div>
+      );
+    }
+    else
   return (
     <div className="container row" style={{ margin: "0.5rem auto" }}>
       <div className="col-12 col-md-3" style={{}}>

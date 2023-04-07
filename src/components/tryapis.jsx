@@ -6,14 +6,12 @@ export default function Tryapi(){
     const [data,setData]=useState("before");
     const fetchData = async ()=>{
         const token = 'Bearer '+localStorage.getItem('jwtToken');
-        console.log(token);
-        console.log("hereh");
         let config = {
             headers: {
               'Authorization':token,
             },
           }
-        const res= await axios.get("http://172.16.138.189:8080/try/something",config);
+        const res= await axios.get("http://localhost:8080/try/something",config);
         // localStorage.setItem('test',res.data\\);
         console.log("here");
         console.log(res);

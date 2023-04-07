@@ -1,0 +1,17 @@
+import React from "react";
+
+export default function DoctorSideBarCard(){
+    return(
+        <div className="Doc-sidebar-card" style={{textAlign:"center"}}>
+                    <img className="doctor-img"
+          src={require('./images/profile2-doctor.jpg')} 
+          alt="logo" 
+          style={{marginBottom:"1rem"}}
+        />
+        <h4>Dr. Drishti Pharma</h4>
+        {/* <h6>Pagal Aurat</h6> */}
+        <h6>Psychiatrists, MBBS</h6>
+        <small>English,Hindi</small>
+        </div>
+    );
+}

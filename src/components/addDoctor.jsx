@@ -21,10 +21,10 @@ export default function AddDoctor() {
         'Authorization':token,
       },
     }
-    const result = await axios.post("http://172.16.138.189:8080/doc/register",cred,config);
+    const result = await axios.post("http://localhost:8080/doc/register",cred,config);
     if(result){
       const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
-      const res = await axios.post("http://172.16.138.189:8080/doc/add",details,config);
+      const res = await axios.post("http://localhost:8080/doc/add",details,config);
       console.log(res);
     }
     console.log(result.data);

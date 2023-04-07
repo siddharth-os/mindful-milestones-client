@@ -7,6 +7,7 @@ import DoctorLogin from './components/doctorLogin';
 import AdminHome from './components/adminHome';
 import AddDoctor from './components/addDoctor';
 import Tryapi from './components/tryapis';
+import DoctorHome from './components/doctorHome';
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
         <Route path="/doctor/login" element={<DoctorLogin/>}/>
         <Route path="/admin/home" element={<AdminHome/>}/>
         <Route path="/admin/add" element={<AddDoctor/>}/>
+        <Route path="/doctor/home" element={<DoctorHome/>}/>
         <Route path="/try/api" element={<Tryapi/>}/>
         </Routes>
         <Footer/>

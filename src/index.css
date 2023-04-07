@@ -37,3 +37,8 @@ body {
   opacity: 0.6;
   transition:0.8ms;
 }
+.doctor-img{
+  height: 120px;
+  width: 120px;
+  border-radius: 20px;
+}

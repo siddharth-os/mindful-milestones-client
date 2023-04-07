@@ -1,26 +1,46 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useEffect } from "react";
+import { isTokenExist } from "../auth/auth";
+import AdminHome from "./adminHome";
 export default function AdminLogin() {
     const[email,setEmail]=useState("");
     const[password,setPassword]=useState("");
+    const[isLoggedIn,setIsLoggedIn]=useState(false);
+    const [isToken,setIsToken]=useState(false);
+    useEffect(()=>{
+      setIsToken(isTokenExist());
+    },[])
+    const navigate=useNavigate("");
     const handleSubmit= async (e)=>{
         e.preventDefault();
-        const result = await axios.post("http://172.16.138.189:8080/admin/authenticate"
+        // const result = await axios.post("http://172.16.138.189:8080/admin/authenticate"
+        const result = await axios.post("http://localhost:8080/admin/authenticate"
         ,{
           username:email,
           password,
           role:0
         })
-        const token=result.data;
-        localStorage.setItem('jwtToken', token);
-        const temp = localStorage.getItem('jwtToken');
-        console.log(temp);
-        console.log(result);
+        if(result.status!==200){
+          setIsLoggedIn(false);
+          alert("Problem Faced");
+        }
+        else{
+          setIsLoggedIn(true);
+        }
+        if(result.status===200){
+          const token=result.data;
+          localStorage.setItem('jwtToken', token);
+          navigate("/admin/home");
+        }
     }
+  if(isToken){
+    navigate("/admin/home");
+  }
   return (
     <div className="container row" style={{ margin: "2rem auto" }}>
       <div
@@ -56,11 +76,9 @@ export default function AdminLogin() {
               onChange={e => setPassword(e.target.value)}
             />
           </div>
-          {/* <Link to={`/admin/home`} style={{textDecoration:"none"}}> */}
           <button type="submit" class="btn btn-dark" style={{borderRadius:"0",width:"100%",margin:"1rem 0"}}>
             Submit
           </button>
-          {/* </Link> */}
         </form>
       </div>
     </div>
