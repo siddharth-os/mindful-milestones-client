@@ -5,10 +5,15 @@ import DoctorMilestoneCard from "./doctorMilestoneCard";
 import DoctorQuote from "./doctorQuoteComponent";
 import DoctorSideBarCard from "./doctorSideBarCard";
 import DoctorStatsCard from "./doctorStatsCard";
+import DualPatientsList from "./dualPatientsList";
 export default function DoctorHome() {
+  const sideBarStyle={
+    backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
+
+  }
   return (
     <div className="container row" style={{margin:"1rem auto"}}>
-      <div className="col-12 col-md-4 doc-sidebar-main" style={{backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px"}}>
+      <div className="col-12 col-md-4 doc-sidebar-main" style={sideBarStyle}>
         {/* <p> <i class="fa-solid fa-house"></i> lkfalkm</p> */}
         <DoctorSideBarCard/>
         <hr />
@@ -21,6 +26,7 @@ export default function DoctorHome() {
       <div className="col-12 col-md-8">
         <DoctorQuote/>
         <DoctorDashboardCard/>
+        <DualPatientsList/>
       </div>
     </div>
   );

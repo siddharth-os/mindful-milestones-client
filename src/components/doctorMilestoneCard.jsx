@@ -5,7 +5,7 @@ export default function DoctorMilestoneCard() {
     const [patientConsulted,setPatientConsulted]=useState("27");
   return (
     <div className="doctor-milestone-card" style={{paddingRight:"2rem",paddingLeft:"2rem"}}>
-      <h4>{patientConsulted} Patients</h4>
+      <h4 className="blue-heading">{patientConsulted} Patients</h4>
       <small>Next Milestone 100 Patients</small>
       <div class="progress">
         <div

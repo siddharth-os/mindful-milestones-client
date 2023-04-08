@@ -3,6 +3,7 @@ import React from "react";
 export default function DoctorStatsCard() {
     const headingStyles={
         margin:"0 auto",
+        color:"#28328c"
     }
   return (
     <div style={{}}>

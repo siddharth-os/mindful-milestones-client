@@ -8,7 +8,7 @@ export default function DoctorSideBarCard(){
           alt="logo" 
           style={{marginBottom:"1rem"}}
         />
-        <h4>Dr. Drishti Pharma</h4>
+        <h4 className="dark-blue-heading">Dr. Drishti Pharma</h4>
         {/* <h6>Pagal Aurat</h6> */}
         <h6>Psychiatrists, MBBS</h6>
         <small>English,Hindi</small>

@@ -1,7 +1,8 @@
 body {
-  background-color: #e5e5f7;
+  /* background-color: #e5e5f7;
   /* opacity: 0.2; */
-  background-image: radial-gradient(#444cf7 0.45px, #e5e5f7 0.45px);
+  /* e5e5f7 */
+  background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
   background-size: 9px 9px;
 }
 /*code {
@@ -41,4 +42,10 @@ body {
   height: 120px;
   width: 120px;
   border-radius: 20px;
+}
+.blue-heading{
+  color:#28328c;
+}
+.dark-blue-heading{
+  color:#1c2276;
 }
