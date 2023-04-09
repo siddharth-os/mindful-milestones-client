@@ -16,7 +16,9 @@ export default function AdminHome() {
     const [isToken,setIsToken]=useState(false);
     const navigate = useNavigate();
     useState(()=>{
-      setIsToken(isTokenExist());
+      //this is to set is Token
+      // setIsToken(isTokenExist());
+      setIsToken(true);
       const fetchAllDoctors=async()=>{
         const token = 'Bearer '+localStorage.getItem('jwtToken');
         console.log(token);

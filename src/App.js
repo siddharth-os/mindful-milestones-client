@@ -9,6 +9,7 @@ import AddDoctor from './components/addDoctor';
 import Tryapi from './components/tryapis';
 import DoctorHome from './components/doctorHome';
 import PatientPage from './components/patientPage';
+import TaskManagement from './components/taskManagement';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         <Route path="/admin/add" element={<AddDoctor/>}/>
         <Route path="/doctor/home" element={<DoctorHome/>}/>
         <Route path="/doctor/patient/id" element={<PatientPage/>}/>
+        <Route path="/doctor/patient/id/task" element={<TaskManagement/>}/>
         <Route path="/try/api" element={<Tryapi/>}/>
         </Routes>
         <Footer/>

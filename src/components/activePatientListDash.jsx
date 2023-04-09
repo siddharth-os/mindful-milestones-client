@@ -27,7 +27,7 @@ export default function ActivePatientListDash() {
                   LABrador
                 </td>
                 <td>
-                  <a href="#">View</a>
+                  <a href="/doctor/patient/id">View</a>
                 </td>
               </tr>
             )
