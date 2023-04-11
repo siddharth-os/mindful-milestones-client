@@ -11,18 +11,23 @@ export default function AdminSideBarUl() {
   }
   return (
     <ul>
+      <hr />
       <li>
-        <a href="/admin/home">Dashboard</a>
+        <a href="/admin/home"> <i class="fa-solid fa-desktop"></i> Dashboard</a>
       </li>
+      <hr />
       <li>
-        <a href="#">Profile</a>
+        <a href="#"> <i class="fa-solid fa-user"></i> Profile</a>
       </li>
+      <hr />
       <li>
-        <a href="/admin/add">Add Doctor</a>
+        <a href="/admin/add"> <i class="fa-solid fa-plus"></i> Add Doctor</a>
       </li>
+      <hr />
       <li>
-        <p onClick={handleLogout} style={{cursor:"pointer"}}>Logout</p>
+        <p onClick={handleLogout} style={{cursor:"pointer"}}> <i class="fa-solid fa-right-from-bracket"></i> Logout</p>
       </li>
+      <hr />
     </ul>
   );
 }

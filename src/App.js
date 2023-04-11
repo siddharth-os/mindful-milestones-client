@@ -10,6 +10,8 @@ import Tryapi from './components/tryapis';
 import DoctorHome from './components/doctorHome';
 import PatientPage from './components/patientPage';
 import TaskManagement from './components/taskManagement';
+import AdminDoctorDetails from './components/adminDoctorDetails';
+import DoctorPatientChat from './components/doctorPatientChat';
 function App() {
   return (
     <div className="App">
@@ -21,9 +23,11 @@ function App() {
         <Route path="/doctor/login" element={<DoctorLogin/>}/>
         <Route path="/admin/home" element={<AdminHome/>}/>
         <Route path="/admin/add" element={<AddDoctor/>}/>
+        <Route path="/admin/doctor/:did" element={<AdminDoctorDetails/>}/>
         <Route path="/doctor/home" element={<DoctorHome/>}/>
         <Route path="/doctor/patient/id" element={<PatientPage/>}/>
         <Route path="/doctor/patient/id/task" element={<TaskManagement/>}/>
+        <Route path="/doctor/patient/id/chat" element={<DoctorPatientChat/>}/>
         <Route path="/try/api" element={<Tryapi/>}/>
         </Routes>
         <Footer/>

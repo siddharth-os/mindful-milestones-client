@@ -1,5 +1,5 @@
 import React from "react";
-
+import Link from '@mui/material/Link';
 export default function PatientTopCard() {
   const iconStyle = {
     fontSize: "20px",
@@ -31,8 +31,8 @@ export default function PatientTopCard() {
           Click on Chat to communicate and Tasks to manage task for
           patient.
         </p>
-        <button className="btn" style={{marginRight:"1rem",backgroundColor:"#576CBC",color:"white"}}>Chat <i class="fa-solid fa-message"></i></button>
-        <button className="btn" style={{backgroundColor:"#576CBC",color:"white"}}>Tasks <i class="fa-solid fa-list-check"></i></button>
+        <Link href="/doctor/patient/id/chat"><button className="btn" style={{marginRight:"1rem",backgroundColor:"#576CBC",color:"white"}}>Chat <i class="fa-solid fa-message"></i></button></Link>
+        <Link href="/doctor/patient/id/task"><button className="btn" style={{backgroundColor:"#576CBC",color:"white"}}>Tasks <i class="fa-solid fa-list-check"></i></button></Link>
       </div>
       <div className="col-md-4">
         <img

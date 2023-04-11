@@ -6,7 +6,8 @@ import PatientSeverity from "./patientSeverity";
 import PatientSideBarCard from "./patientSideBarCard";
 import PatientTopCard from "./patientTopCard";
 import Questionnaire from "./questionnaire";
-
+import Button from '@mui/material/Button';
+import PatientBackButton from "./patientBackButton";
 export default function PatientPage(){
     const sideBarStyle={
         backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
@@ -20,7 +21,7 @@ export default function PatientPage(){
         <hr />
         <PatientBodyInfo/>
         <hr />
-        <DoctorLogoutSideBar/>
+        <PatientBackButton/>
       </div>
       <div className="col-12 col-md-8">
         <PatientTopCard/>

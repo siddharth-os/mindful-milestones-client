@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AdminSidebar from "./adminSidebar";
+import { initUrl } from "../auth/auth";
 export default function AddDoctor() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ export default function AddDoctor() {
   const [qual, setQual] = useState("");
   const [specs, setSpecs] = useState("");
   const bDate = "1999/10/16";
+  const navigate=useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const password = username.substring(0, 4) + bDate.substring(0,4);
@@ -21,11 +23,12 @@ export default function AddDoctor() {
         'Authorization':token,
       },
     }
-    const result = await axios.post("http://localhost:8080/doc/register",cred,config);
+    const result = await axios.post(initUrl+"/doc/register",cred,config);
     if(result){
       const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
-      const res = await axios.post("http://localhost:8080/doc/add",details,config);
-      console.log(res);
+      const res = await axios.post(initUrl+"/doc/add",details,config);
+      alert("Docotor added Successfully");
+      navigate("/admin/home");
     }
     console.log(result.data);
     // //1 is Did

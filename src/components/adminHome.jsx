@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DoctorsList from "./doctorsList";
 import AdminSidebar from "./adminSidebar";
 import axios from "axios";
-import { isTokenExist } from "../auth/auth";
+import { getConfig, initUrl, isTokenExist } from "../auth/auth";
 import NotLoggedIn from "../auth/handleNotLoggedIn";
 import { useNavigate } from "react-router-dom";
 export default function AdminHome() {
@@ -12,25 +12,20 @@ export default function AdminHome() {
         boxShadow:"6px 5px 8px gray",
         opacity:"1",
     };
-    const [doclist,setDoclist]=useState([]);
+    const [doclist,setDoclist]=useState();
     const [isToken,setIsToken]=useState(false);
+    const [countOfDoc,setCountOfDoc] = useState(0);
     const navigate = useNavigate();
     useState(()=>{
       //this is to set is Token
       // setIsToken(isTokenExist());
       setIsToken(true);
       const fetchAllDoctors=async()=>{
-        const token = 'Bearer '+localStorage.getItem('jwtToken');
-        console.log(token);
-        let config = {
-            headers: {
-              'Authorization':token,
-            },
-          }
-        // const result= await axios.get("http://172.16.138.189:8080/doc/getall",config);
-        const result= await axios.get("http://localhost:8080/doc/getall",config);
-        console.log(result.data);
+        const config = getConfig();
+        const res = await axios.get(initUrl+"/doc/getcount",config);
+        setCountOfDoc(res.data);
       };
+      fetchAllDoctors();
     },[]);
     const directToDoctor=()=>{
       navigate("/doctor/login");
@@ -59,7 +54,7 @@ export default function AdminHome() {
             <div className="bg-light" style={cardStyle}>
                 <h3>Doctor</h3>
                 <small>Count of Doctor</small>
-                <h1 style={{fontSize:"4rem"}}>37</h1>
+                <h1 style={{fontSize:"4rem"}}>{countOfDoc}</h1>
             </div>
           </div>
           <div className="col-md-4">
