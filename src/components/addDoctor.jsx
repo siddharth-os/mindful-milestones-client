@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AdminSidebar from "./adminSidebar";
-import { initUrl } from "../auth/auth";
+import { getConfig, initUrl } from "../auth/auth";
 export default function AddDoctor() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -17,17 +17,12 @@ export default function AddDoctor() {
     e.preventDefault();
     const password = username.substring(0, 4) + bDate.substring(0,4);
     const cred = { username,email, password, role:1 };
-    const token  = 'Bearer '+localStorage.getItem('jwtToken');
-    let config = {
-      headers: {
-        'Authorization':token,
-      },
-    }
+    let config = getConfig();
     const result = await axios.post(initUrl+"/doc/register",cred,config);
     if(result){
       const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
       const res = await axios.post(initUrl+"/doc/add",details,config);
-      alert("Docotor added Successfully");
+      alert("Doctor added Successfully");
       navigate("/admin/home");
     }
     console.log(result.data);

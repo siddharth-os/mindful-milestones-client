@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { initUrl, isTokenExist } from "../auth/auth";
+import { checkForAdminTokenExist, initUrl, isTokenExist } from "../auth/auth";
 import AdminHome from "./adminHome";
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -22,7 +22,6 @@ export default function AdminLogin() {
     const result = await axios
       .post(
         url,
-        // const result = await axios.post("http://localhost:8080/admin/authenticate"
         {
           username: email,
           password,
@@ -49,13 +48,14 @@ export default function AdminLogin() {
     if (result.status === 200) {
       const token = result.data;
       localStorage.setItem("jwtToken", token);
+      localStorage.setItem("isAdminAuthenticated",'true');
       navigate("/admin/home");
     }
     console.log(isToken);
   };
-  // if (isToken !==null) {
-  //   navigate("/admin/home");
-  // }
+  if (isToken !==null && checkForAdminTokenExist()!==null) {
+    navigate("/admin/home");
+  }
   return (
     <div className="container row" style={{ margin: "2rem auto" }}>
       <div

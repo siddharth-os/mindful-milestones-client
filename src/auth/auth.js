@@ -9,11 +9,16 @@ export function isTokenExist(){
 export function logout(){
     if(localStorage.getItem("jwtToken"))
         localStorage.removeItem('jwtToken');
+    if(localStorage.getItem('isAdminAuthenticated'))
+    localStorage.removeItem('isAdminAuthenticated')
 }
 export const initUrl="http://localhost:8080";
 
 export function checkForTokenExist(){
     return localStorage.getItem('jwtToken');
+}
+export function checkForAdminTokenExist(){
+    return localStorage.getItem('isAdminAuthenticated');
 }
 export function getConfig(){
     if(checkForTokenExist()===null)

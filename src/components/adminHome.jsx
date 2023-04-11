@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoctorsList from "./doctorsList";
 import AdminSidebar from "./adminSidebar";
 import axios from "axios";
 import { getConfig, initUrl, isTokenExist } from "../auth/auth";
 import NotLoggedIn from "../auth/handleNotLoggedIn";
 import { useNavigate } from "react-router-dom";
+import WarningPage from "./warningPage";
 export default function AdminHome() {
     const cardStyle={
         padding:"1rem",
@@ -16,31 +17,18 @@ export default function AdminHome() {
     const [isToken,setIsToken]=useState(false);
     const [countOfDoc,setCountOfDoc] = useState(0);
     const navigate = useNavigate();
-    useState(()=>{
+    useEffect(()=>{
       //this is to set is Token
-      // setIsToken(isTokenExist());
-      setIsToken(true);
+      setIsToken(isTokenExist());
       const fetchAllDoctors=async()=>{
         const config = getConfig();
         const res = await axios.get(initUrl+"/doc/getcount",config);
         setCountOfDoc(res.data);
       };
-      fetchAllDoctors();
+        fetchAllDoctors();
     },[]);
-    const directToDoctor=()=>{
-      navigate("/doctor/login");
-    }
-    const directToAdmin=()=>{
-      navigate("/admin/login");
-    }
     if(!isToken){
-      return(
-        <div className="container" style={{margin:"1rem auto"}}>
-          <h2>You are Not Logged In!!! Please Login.</h2>
-          <button className="btn btn-dark" onClick={directToAdmin} style={{borderRadius:"0",marginRight:"1rem"}}>Admin</button>
-          <button className="btn btn-dark" onClick={directToDoctor} style={{borderRadius:"0"}}>Doctor</button>
-        </div>
-      );
+      return(<WarningPage/>);
     }
     else
   return (

@@ -12,6 +12,7 @@ import PatientPage from './components/patientPage';
 import TaskManagement from './components/taskManagement';
 import AdminDoctorDetails from './components/adminDoctorDetails';
 import DoctorPatientChat from './components/doctorPatientChat';
+import AdminDoctorDetailsEdit from './components/AdminDoctorDetailsEdit';
 function App() {
   return (
     <div className="App">
@@ -24,6 +25,7 @@ function App() {
         <Route path="/admin/home" element={<AdminHome/>}/>
         <Route path="/admin/add" element={<AddDoctor/>}/>
         <Route path="/admin/doctor/:did" element={<AdminDoctorDetails/>}/>
+        <Route path="/admin/doctor/edit/:did" element={<AdminDoctorDetailsEdit/>}/>
         <Route path="/doctor/home" element={<DoctorHome/>}/>
         <Route path="/doctor/patient/id" element={<PatientPage/>}/>
         <Route path="/doctor/patient/id/task" element={<TaskManagement/>}/>
