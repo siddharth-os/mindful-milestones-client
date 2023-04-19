@@ -7,10 +7,7 @@ export function isTokenExist(){
     return true;
 }
 export function logout(){
-    if(localStorage.getItem("jwtToken"))
-        localStorage.removeItem('jwtToken');
-    if(localStorage.getItem('isAdminAuthenticated'))
-    localStorage.removeItem('isAdminAuthenticated')
+    localStorage.clear();
 }
 export const initUrl="http://localhost:8080";
 
@@ -31,4 +28,13 @@ export function getConfig(){
         },
     }
     return config;
+}
+export function getToken(){
+    return localStorage.getItem('jwtToken');
+}
+export function isDoctor(){
+    if(getToken() && localStorage.getItem('role')===1){
+        return true;
+    }
+    return false;
 }

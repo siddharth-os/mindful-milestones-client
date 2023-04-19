@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { initUrl } from "../auth/auth";
 export default function DoctorLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [email, setEmail] = useState("doctor1");
+  const [password, setPassword] = useState("doct1999");
+  const navigate = useNavigate();
+  
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const res = await axios.post(initUrl+"/doc/authenticate",{username:email,password,role:1});
-    console.log(res.data);
+    try {
+      const res = await axios.post(initUrl+"/doc/authenticate",{username:email,password,role:1});
+      localStorage.setItem('jwtToken',res.data.jwttoken);
+      localStorage.setItem('role',1);
+      localStorage.setItem('id',res.data.did);
+      navigate("/doctor/home");
+    } catch (error) {
+      alert("Error Encounterd");
+      navigate("/doctor/login"); 
+    }
+
   };
   return (
     <div className="container row" style={{ margin: "2rem auto" }}>
@@ -44,6 +54,7 @@ export default function DoctorLogin() {
               aria-describedby="emailHelp"
               placeholder="Enter email"
               style={{ borderRadius: "0" }}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -55,6 +66,7 @@ export default function DoctorLogin() {
               id="exampleInputPassword1"
               placeholder="Password"
               style={{ borderRadius: "0" }}
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

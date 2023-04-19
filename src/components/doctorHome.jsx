@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { isDoctor, logout } from "../auth/auth";
 import DoctorDashboardCard from "./doctorDashboardCard";
 import DoctorLogoutSideBar from "./doctorLogout";
 import DoctorMilestoneCard from "./doctorMilestoneCard";
@@ -7,6 +9,7 @@ import DoctorSideBarCard from "./doctorSideBarCard";
 import DoctorStatsCard from "./doctorStatsCard";
 import DualPatientsList from "./dualPatientsList";
 export default function DoctorHome() {
+  const navigate = useNavigate();
   const sideBarStyle={
     backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
 
