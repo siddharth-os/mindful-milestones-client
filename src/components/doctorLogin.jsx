@@ -3,13 +3,16 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import {Link} from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
+import { initUrl } from "../auth/auth";
 export default function DoctorLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log({ email, password });
+    const res = await axios.post(initUrl+"/doc/authenticate",{username:email,password,role:1});
+    console.log(res.data);
   };
   return (
     <div className="container row" style={{ margin: "2rem auto" }}>
@@ -35,7 +38,7 @@ export default function DoctorLogin() {
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
@@ -55,7 +58,7 @@ export default function DoctorLogin() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <Link to={`/doctor/home`} style={{textDecoration:"none"}}>
+          {/* <Link to={`/doctor/home`} style={{textDecoration:"none"}}> */}
           <button
             type="submit"
             class="btn btn-dark"
@@ -63,10 +66,10 @@ export default function DoctorLogin() {
           >
             Submit
           </button>
-          </Link>
-          <div className="form-group" style={{ textAlign: "center" }}>
+          {/* </Link> */}
+          {/* <div className="form-group" style={{ textAlign: "center" }}>
             <a href="/">Password Reset</a>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>

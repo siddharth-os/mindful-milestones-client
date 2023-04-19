@@ -1,7 +1,18 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { getConfig, initUrl } from "../auth/auth";
 
 export default function AdminDoctorStats(props) {
   const did=props.id;
+  const [consult,setConsult]=useState("");
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const config = getConfig();
+      const res = await axios.get(initUrl+"/consult/"+did,config);
+      setConsult(res.data.length);
+    }
+    fetchData();
+  },[])
   const cardStyle = {
     padding: "1rem",
     paddingLeft: "2rem",
@@ -13,7 +24,7 @@ export default function AdminDoctorStats(props) {
       <div className="col-md-4">
         <div className="bg-light" style={cardStyle}>
           <h3>Consulted</h3>
-          <h1 style={{ fontSize: "3rem" }}>15</h1>
+          <h1 style={{ fontSize: "3rem" }}>{consult}</h1>
           <small>Patients Consulted</small>
         </div>
       </div>

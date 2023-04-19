@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
+import { useFetcher } from "react-router-dom";
 
 export default function TaskList() {
   const l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 1, 1, 1, 1, 1];
   const [newTask, setNewTask] = useState("");
 
+  const handleChangeCheckbox = (e)=>{
+    e.preventDefault();
+    console.log(e.target.checked);
+    if(e.target.checked===true){
+      e.target.value=false;
+    }
+    else{
+      e.target.checked=true;
+    }
+  }
   const handleChangeActivity = (e) => {
-    setNewTask(e.target.value);
+    e.preventDefault();
   };
   const handleActivitySubmit = (e) => {
     e.preventDefault();
@@ -33,6 +44,7 @@ export default function TaskList() {
                         class="form-check-input"
                         type="checkbox"
                         id="flexSwitchCheckChecked"
+                        onChange={handleChangeCheckbox}
                       />
                     </div>
                   </td>

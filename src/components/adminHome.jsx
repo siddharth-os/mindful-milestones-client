@@ -16,6 +16,7 @@ export default function AdminHome() {
     const [doclist,setDoclist]=useState();
     const [isToken,setIsToken]=useState(false);
     const [countOfDoc,setCountOfDoc] = useState(0);
+    const [patCount,setPatCount] = useState("");
     const navigate = useNavigate();
     useEffect(()=>{
       //this is to set is Token
@@ -24,8 +25,11 @@ export default function AdminHome() {
         const config = getConfig();
         const res = await axios.get(initUrl+"/doc/getcount",config);
         setCountOfDoc(res.data);
+        const res2 = await axios.post(initUrl+"/pat/getall",{},config);
+        // console.log(res2.data);
+        setPatCount(res2.data);
       };
-        fetchAllDoctors();
+      fetchAllDoctors();
     },[]);
     if(!isToken){
       return(<WarningPage/>);
@@ -48,8 +52,8 @@ export default function AdminHome() {
           <div className="col-md-4">
           <div className="bg-light" style={cardStyle}>
                 <h3>Patients</h3>
-                <small>Count of Doctor</small>
-                <h1 style={{fontSize:"4rem"}}>37</h1>
+                <small>Count of Patients</small>
+                <h1 style={{fontSize:"4rem"}}>{patCount}</h1>
             </div>
           </div>
           <div className="col-md-4">

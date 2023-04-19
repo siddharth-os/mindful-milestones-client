@@ -29,8 +29,13 @@ export default function Home() {
           <Link to={`/doctor/login`} style={{textDecoration:"none"}}><button className="btn btn-md btn-dark" style={{borderRadius:"0"}}>Doctor</button></Link>
           </div>
         </div>
-        <div className="col-md-6">
-          <h3>here image</h3>
+        <div className="col-md-6" style={{display:"flex",}}>
+        <img
+          className="doctor-img"
+          src={require("./images/mm.gif")}
+          alt="logo"
+          style={{height:"400px",width:"400px",margin:"1rem auto" }}
+        />
         </div>
       </div>
     </div>
