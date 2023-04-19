@@ -4,12 +4,19 @@ import Avatar from "@mui/material/Avatar";
 import {Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { initUrl } from "../auth/auth";
+import { initUrl, isAdmin, isDoctor } from "../auth/auth";
 export default function DoctorLogin() {
   const [email, setEmail] = useState("doctor1");
   const [password, setPassword] = useState("doct1999");
   const navigate = useNavigate();
-  
+  useEffect(()=>{
+    if(isAdmin()){
+      navigate("/admin/home");
+    }
+    if(isDoctor()){
+      navigate("/doctor/home");
+    }
+  },[]);
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {

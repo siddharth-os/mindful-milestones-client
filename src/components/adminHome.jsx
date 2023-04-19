@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DoctorsList from "./doctorsList";
 import AdminSidebar from "./adminSidebar";
 import axios from "axios";
-import { getConfig, initUrl, isTokenExist } from "../auth/auth";
+import { getConfig, initUrl, isAdmin, isTokenExist, logout } from "../auth/auth";
 import NotLoggedIn from "../auth/handleNotLoggedIn";
 import { useNavigate } from "react-router-dom";
 import WarningPage from "./warningPage";
@@ -14,27 +14,30 @@ export default function AdminHome() {
         opacity:"1",
     };
     const [doclist,setDoclist]=useState();
-    const [isToken,setIsToken]=useState(false);
     const [countOfDoc,setCountOfDoc] = useState(0);
     const [patCount,setPatCount] = useState("");
     const navigate = useNavigate();
     useEffect(()=>{
-      //this is to set is Token
-      setIsToken(isTokenExist());
+      if(!isAdmin()){
+        // alert("Not Authenticated");
+        logout();
+        navigate("/");
+      }
       const fetchAllDoctors=async()=>{
-        const config = getConfig();
-        const res = await axios.get(initUrl+"/doc/getcount",config);
-        setCountOfDoc(res.data);
-        const res2 = await axios.post(initUrl+"/pat/getall",{},config);
-        // console.log(res2.data);
-        setPatCount(res2.data);
+        try {
+          const config = getConfig();
+          const res = await axios.get(initUrl+"/doc/getcount",config);
+          setCountOfDoc(res.data);
+          const res2 = await axios.post(initUrl+"/pat/getall",{},config);
+          setPatCount(res2.data);
+        } catch (error) {
+          console.log(error);
+          logout();
+          navigate("/admin/login");
+        }
       };
       fetchAllDoctors();
     },[]);
-    if(!isToken){
-      return(<WarningPage/>);
-    }
-    else
   return (
     <div className="container row" style={{ margin: "0.5rem auto" }}>
       <div className="col-12 col-md-3" style={{}}>

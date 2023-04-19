@@ -29,12 +29,27 @@ export function getConfig(){
     }
     return config;
 }
-export function getToken(){
-    return localStorage.getItem('jwtToken');
+export function getRole(){
+    return localStorage.getItem('role');
 }
-export function isDoctor(){
-    if(getToken() && localStorage.getItem('role')===1){
+export function getToken(){
+    const token = localStorage.getItem("jwtToken");
+    if(token!==null){
+        return 'Bearer '+token;
+    }
+    return null;
+}
+export function isAdmin(){
+    if(getToken() && getRole()==='0'){
         return true;
     }
-    return false;
+    else
+        return false;
+}
+export function isDoctor(){
+    if(getToken() && getRole()==='1'){
+        return true;
+    }
+    else
+        return false;
 }

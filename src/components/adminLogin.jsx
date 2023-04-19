@@ -5,56 +5,32 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { checkForAdminTokenExist, initUrl, isTokenExist } from "../auth/auth";
+import { checkForAdminTokenExist, initUrl, isAdmin, isDoctor, isTokenExist } from "../auth/auth";
 import AdminHome from "./adminHome";
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isToken, setIsToken] = useState();
-  useEffect(() => {
-    setIsToken(isTokenExist());
-  }, []);
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const url = initUrl + "/admin/authenticate";
-    const result = await axios
-      .post(
-        url,
-        {
-          username: email,
-          password,
-          role: 0,
-        }
-      )
-      .catch(function (error) {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          console.log(error.request);
-        } else {
-          console.log("Error", error.message);
-        }
-      });
-    if (result.status !== 200) {
-      setIsLoggedIn(false);
-      alert("Problem Faced");
-    } else {
-      setIsLoggedIn(true);
-    }
-    if (result.status === 200) {
-      const token = result.data;
-      localStorage.setItem("jwtToken", token);
-      localStorage.setItem("isAdminAuthenticated",'true');
+  useEffect(()=>{
+    if(isAdmin()){
       navigate("/admin/home");
     }
-    console.log(isToken);
-  };
-  if (isToken !==null && checkForAdminTokenExist()!==null) {
-    navigate("/admin/home");
+    if(isDoctor()){
+      navigate("/doctor/home");
+    }
+  },[]);
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    try {
+      const res = await axios.post(initUrl+"/admin/authenticate",{username:email,password,role:0});
+      localStorage.setItem('jwtToken',res.data);
+      localStorage.setItem('role','0');
+      navigate("/admin/home");
+    } catch (error) {
+      console.log(error);
+      alert("Error Encountered"); 
+      navigate("/admin/login");
+    }
   }
   return (
     <div className="container row" style={{ margin: "2rem auto" }}>

@@ -1,6 +1,27 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { getConfig, initUrl } from "../auth/auth";
 
 export default function DoctorDashboardCard() {
+  const [consult,setConsult]=useState("");
+  const [waitlisted,setwaitlisted]=useState("");
+    useEffect(()=>{
+      const fetchData = async()=>{
+        try {
+          const config = getConfig();
+          const did = localStorage.getItem('id');
+          const res = await axios.post(initUrl+"/consult/activ/"+did,{},config);
+          // console.log(res.data.length);
+          setConsult(res.data.length);
+          const res2 = await axios.post(initUrl+"/consult/blocked/"+did,{},config);
+          // console.log(res2.data.length);
+          setwaitlisted(res2.data.length);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchData();
+    },[]);
   const cardStyle = {
     backgroundColor: "#FDF4F5",
     margin: "1rem",
@@ -19,7 +40,7 @@ export default function DoctorDashboardCard() {
           </div>
           <div className="col" style={{ marginTop: "0.5rem" }}>
             <h6 className="dark-blue-heading">Active</h6>
-            <h2 className="dark-blue-heading">23</h2>
+            <h2 className="dark-blue-heading">{consult}</h2>
           </div>
         </div>
       </div>
@@ -32,7 +53,7 @@ export default function DoctorDashboardCard() {
           </div>
           <div className="col" style={{ marginTop: "0.5rem" }}>
             <h6 className="dark-blue-heading">Waitlisted</h6>
-            <h2 className="dark-blue-heading">7</h2>
+            <h2 className="dark-blue-heading">{waitlisted}</h2>
           </div>
         </div>
       </div>

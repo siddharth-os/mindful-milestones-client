@@ -1,9 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { isAdmin, isDoctor } from "../auth/auth";
 export default function Home() {
   const scss = {
     backgroundColor: "blue",
   };
+  const navigate = useNavigate();
+  useEffect(()=>{
+    console.log("here");
+    if(isAdmin()){
+      navigate("/admin/home");
+    }
+    if(isDoctor()){
+      navigate("/doctor/home");
+    }
+  },[]);
   return (
     <div className="container" style={{ marginTop: "3rem" }}>
       <div className="row">
