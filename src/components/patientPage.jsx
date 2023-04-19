@@ -8,14 +8,17 @@ import PatientTopCard from "./patientTopCard";
 import Questionnaire from "./questionnaire";
 import Button from '@mui/material/Button';
 import PatientBackButton from "./patientBackButton";
+import { useParams } from "react-router-dom";
 export default function PatientPage(){
+    
+    const {id}=useParams();
     const sideBarStyle={
         backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
     }
     return(
         <div className="container row" style={{margin:"1rem auto"}}>
       <div className="col-12 col-md-4 doc-sidebar-main" style={sideBarStyle}>
-        <PatientSideBarCard/>
+        <PatientSideBarCard pid = {id}/>
         <hr />
         <PatientSeverity/>
         <hr />

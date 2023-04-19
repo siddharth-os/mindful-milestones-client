@@ -10,9 +10,9 @@ export default function DoctorMilestoneCard() {
         try {
           const config = getConfig();
           const did = localStorage.getItem('id');
-          const res = await axios.get(initUrl+"/consult/"+did,config);
+          const res = await axios.post(initUrl+"/consult/activ/"+did,{},config);
           // console.log(res.data.length);
-          setPatientConsulted(0);
+          setPatientConsulted(res.data.length);
         } catch (error) {
           console.log(error);
         }

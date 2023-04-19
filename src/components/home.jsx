@@ -7,7 +7,6 @@ export default function Home() {
   };
   const navigate = useNavigate();
   useEffect(()=>{
-    console.log("here");
     if(isAdmin()){
       navigate("/admin/home");
     }

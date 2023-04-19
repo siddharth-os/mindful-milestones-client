@@ -29,12 +29,12 @@ export default function AddDoctor() {
     // //1 is Did
   };
   return (
-    <div className="container row">
-      <div className="col-12 col-md-3">
+    <div className="container row" style={{margin:"0.5rem auto"}}>
+      <div className="col-12 col-md-3" style={{height:"600px"}}>
         <AdminSidebar/>
       </div>
       <div className="col-12 col-md-9">
-        <div className="col-md-6 bg-light" style={{margin:"0 auto "}}>
+        <div className="col-md-6 bg-light" style={{margin:"0 auto",boxShadow:"5px 5px 5px gray"}}>
           <form style={{ opacity: "1" ,padding:"1rem"}} onSubmit={(e) => handleSubmit(e)}>
             <div style={{ textAlign: "center" }}>
               <h2>Add New Doctor</h2>

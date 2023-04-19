@@ -5,19 +5,17 @@ import { useFetcher } from "react-router-dom";
 export default function TaskList() {
   const l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 1, 1, 1, 1, 1];
   const [newTask, setNewTask] = useState("");
-
-  const handleChangeCheckbox = (e)=>{
-    e.preventDefault();
-    console.log(e.target.checked);
-    if(e.target.checked===true){
-      e.target.value=false;
-    }
-    else{
-      e.target.checked=true;
+  const [isChecked,setIsChecked]=useState(false);
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+    if (e.target.checked) {
+      console.log('Checkbox is checked. Perform task A.');
+    } else {
+      console.log('Checkbox is unchecked. Perform task B.');
     }
   }
   const handleChangeActivity = (e) => {
-    e.preventDefault();
+    setNewTask(e.target.value);
   };
   const handleActivitySubmit = (e) => {
     e.preventDefault();
@@ -43,8 +41,9 @@ export default function TaskList() {
                       <input
                         class="form-check-input"
                         type="checkbox"
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
                         id="flexSwitchCheckChecked"
-                        onChange={handleChangeCheckbox}
                       />
                     </div>
                   </td>

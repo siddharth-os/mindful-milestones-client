@@ -5,14 +5,23 @@ import { getConfig, initUrl } from "../auth/auth";
 export default function AdminDoctorStats(props) {
   const did=props.id;
   const [consult,setConsult]=useState("");
-  useEffect(()=>{
-    const fetchData = async()=>{
-      const config = getConfig();
-      const res = await axios.get(initUrl+"/consult/"+did,config);
-      setConsult(res.data.length);
-    }
-    fetchData();
-  },[])
+  const [pending,setPending]=useState("");
+    useEffect(()=>{
+      const fetchData = async()=>{
+        try {
+          const config = getConfig();
+          const res = await axios.post(initUrl+"/consult/activ/"+did,{},config);
+          console.log(res.data.length);
+          setConsult(res.data.length);
+          const res2 = await axios.post(initUrl+"/consult/blocked/"+did,{},config);
+          console.log(res2.data.length);
+          setPending(res2.data.length);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fetchData();
+    },[]);
   const cardStyle = {
     padding: "1rem",
     paddingLeft: "2rem",
@@ -31,7 +40,7 @@ export default function AdminDoctorStats(props) {
       <div className="col-md-4">
         <div className="bg-light" style={cardStyle}>
           <h3>Waitlisted</h3>
-          <h1 style={{ fontSize: "3rem" }}>4</h1>
+          <h1 style={{ fontSize: "3rem" }}>{pending}</h1>
           <small>Patients Waitlisted</small>
         </div>
       </div>
