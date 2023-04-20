@@ -28,7 +28,7 @@ function App() {
         <Route path="/admin/doctor/edit/:did" element={<AdminDoctorDetailsEdit/>}/>
         <Route path="/doctor/home" element={<DoctorHome/>}/>
         <Route path="/doctor/patient/:id" element={<PatientPage/>}/>
-        <Route path="/doctor/patient/id/task" element={<TaskManagement/>}/>
+        <Route path="/doctor/patient/:id/task" element={<TaskManagement/>}/>
         <Route path="/doctor/patient/id/chat" element={<DoctorPatientChat/>}/>
         <Route path="/try/api" element={<Tryapi/>}/>
         </Routes>

@@ -1,25 +1,48 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { useFetcher } from "react-router-dom";
+import TaskCheckComponent from "./taskCheckComponent";
+import { getConfig, initUrl } from "../auth/auth";
+import axios from "axios";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function TaskList() {
+export default function TaskList(props) {
+  const {pid}=props;
   const l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 1, 1, 1, 1, 1];
   const [newTask, setNewTask] = useState("");
-  const [isChecked,setIsChecked]=useState(false);
-  const handleCheckboxChange = (e) => {
-    setIsChecked(e.target.checked);
-    if (e.target.checked) {
-      console.log('Checkbox is checked. Perform task A.');
-    } else {
-      console.log('Checkbox is unchecked. Perform task B.');
+  const [taskList,setTaskList] = useState([]);
+  const navigate = useNavigate();
+  const fetchData = async (e)=>{
+    try {
+      const config = getConfig();
+      const res = await axios.post(initUrl+"/getall/tesks/typeone",{},config);
+      setTaskList(res.data);
+    } catch (error) {
+      console.log(error);
+      alert("Error Encountered");
+      // navigate("/");
     }
   }
+  useEffect(()=>{
+    fetchData();
+  },[])
   const handleChangeActivity = (e) => {
     setNewTask(e.target.value);
   };
-  const handleActivitySubmit = (e) => {
+  const handleActivitySubmit = async (e) => {
     e.preventDefault();
-    console.log(newTask);
+    try {
+      if(newTask.length>0){
+        const config = getConfig();
+        const res = axios.post(initUrl+"/task/add",{tasktype:1,tasktext:newTask},config);
+        window.location.reload();
+      }
+      else{
+        alert("Please enter task");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -32,22 +55,14 @@ export default function TaskList() {
             </tr>
           </thead>
           <tbody>
-            {l.map((e) => {
+            {taskList.map((ele,index) => {
               return (
                 <tr>
                   <td>
                     {/* <input className="checkbox-activity" type="checkbox" name="isAssigned" /> */}
-                    <div class="form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        id="flexSwitchCheckChecked"
-                      />
-                    </div>
+                    <TaskCheckComponent tid={ele.tid} pid={pid}/>
                   </td>
-                  <td>Walk for 500m then rest for 2min. Repeat for 3 times.</td>
+                  <td>{ele.tasktext}</td>
                 </tr>
               );
             })}

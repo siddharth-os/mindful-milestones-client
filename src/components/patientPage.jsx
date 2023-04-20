@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 export default function PatientPage(){
     
     const {id}=useParams();
+
     const sideBarStyle={
         backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
     }
@@ -20,16 +21,16 @@ export default function PatientPage(){
       <div className="col-12 col-md-4 doc-sidebar-main" style={sideBarStyle}>
         <PatientSideBarCard pid = {id}/>
         <hr />
-        <PatientSeverity/>
+        <PatientSeverity pid = {id}/>
         <hr />
-        <PatientBodyInfo/>
+        <PatientBodyInfo pid ={id}/>
         <hr />
         <PatientBackButton/>
       </div>
       <div className="col-12 col-md-8">
-        <PatientTopCard/>
+        <PatientTopCard pid ={id}/>
         <PatientDashboardCard/>
-        <Questionnaire/>
+        <Questionnaire pid = {id}/>
       </div>
     </div>
     );

@@ -21,7 +21,6 @@ export function getConfig(){
     if(checkForTokenExist()===null)
         return null;
     const token = 'Bearer '+localStorage.getItem('jwtToken');
-    console.log(token);
     let config = {
         headers: {
           'Authorization':token,
