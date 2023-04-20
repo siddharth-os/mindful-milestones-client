@@ -1,7 +1,25 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getConfig, initUrl } from "../auth/auth";
 
-export default function Questionnaire() {
+export default function Questionnaire(props) {
   const l = [1, 2, 3, 4, 5, 6, 7, 8];
+  const [ques,setques]=useState([]);
+  const {pid}=props;
+  useEffect(()=>{
+    const fetchData = async()=>{
+      try {
+        const config = getConfig();
+        const res = await axios.post(initUrl+"/get/latestquestion/"+pid,{},config);
+        setques(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  },[])
   const headingStyle = {
     color: "#19376D",
     background: "#FDF4F5",
@@ -27,7 +45,7 @@ export default function Questionnaire() {
         className="main-question-div"
         style={{ height: "250px", overflow: "auto",margin:"1rem auto" }}
       >
-        {l.map((ele) => {
+        {ques.map((ele,index) => {
           return (
             <div className="question" style={questionStyle}>
               <h5>How are you feeling today?</h5>
@@ -38,9 +56,9 @@ export default function Questionnaire() {
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
-                  style={{ width: "25%" }}
+                  style={{ width: (ele*10).toString()+"%" }}
                 >
-                  25%
+                  {ele*10}%
                 </div>
               </div>
             </div>
