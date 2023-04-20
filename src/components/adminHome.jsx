@@ -26,7 +26,7 @@ export default function AdminHome() {
       const fetchAllDoctors=async()=>{
         try {
           const config = getConfig();
-          const res = await axios.get(initUrl+"/doc/getcount",config);
+          const res = await axios.post(initUrl+"/doc/getcount",{},config);
           setCountOfDoc(res.data);
           const res2 = await axios.post(initUrl+"/pat/getall",{},config);
           setPatCount(res2.data);

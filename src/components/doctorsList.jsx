@@ -10,7 +10,7 @@ export default function DoctorsList() {
   },[])
   const fetchData = async () =>{
     const config = getConfig();
-    const result = await axios.get(initUrl+"/doc/getall",config);
+    const result = await axios.post(initUrl+"/doc/getall",{},config);
     setDocList(result.data);
     console.log(docList);
     console.log(result.data);

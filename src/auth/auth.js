@@ -9,7 +9,8 @@ export function isTokenExist(){
 export function logout(){
     localStorage.clear();
 }
-export const initUrl="http://localhost:8080";
+// export const initUrl="http://localhost:8080";
+export const initUrl = "https://bd66-119-161-98-68.ngrok-free.app";
 
 export function checkForTokenExist(){
     return localStorage.getItem('jwtToken');

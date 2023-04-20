@@ -15,7 +15,8 @@ export default function AddDoctor() {
   const navigate=useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const password = username.substring(0, 4) + bDate.substring(0,4);
+    // const password = username.substring(0, 4) + bDate.substring(0,4);
+    const password = "123";
     const cred = { username,email, password, role:1 };
     let config = getConfig();
     const result = await axios.post(initUrl+"/doc/register",cred,config);

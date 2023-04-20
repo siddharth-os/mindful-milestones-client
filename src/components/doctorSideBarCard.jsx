@@ -9,7 +9,7 @@ export default function DoctorSideBarCard() {
       try {
         const did = localStorage.getItem('id');
         const config = getConfig();
-        const res = await axios.get(initUrl+"/doc/get/"+did,config);
+        const res = await axios.post(initUrl+"/doc/get/"+did,{},config);
         // console.log(res.data);
         setDoctorDetail(res.data);
       } catch (error) {

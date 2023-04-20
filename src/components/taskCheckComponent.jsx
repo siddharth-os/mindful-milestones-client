@@ -10,7 +10,7 @@ export default function TaskCheckComponent(props){
         const fetchData = async()=>{
             try {
                 const config=getConfig();
-                const res2 = await axios.get(initUrl+"/get/assigned/taskids/"+pid,config);
+                const res2 = await axios.post(initUrl+"/get/assigned/taskids/"+pid,{},config);
                 setIsChecked(res2.data.includes(tid));
             } catch (error) {
                 console.log(error);

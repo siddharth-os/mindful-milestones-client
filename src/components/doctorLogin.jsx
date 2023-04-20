@@ -6,8 +6,8 @@ import { useState } from "react";
 import axios from "axios";
 import { initUrl, isAdmin, isDoctor } from "../auth/auth";
 export default function DoctorLogin() {
-  const [email, setEmail] = useState("doctor1");
-  const [password, setPassword] = useState("doct1999");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   useEffect(()=>{
     if(isAdmin()){

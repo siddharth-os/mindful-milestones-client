@@ -19,7 +19,7 @@ export default function AdminDoctorDetailsEdit(props){
       }, []);
       const fetchData = async () => {
         const config = getConfig();
-        const result = await axios.get(initUrl + "/doc/get/" + did, config);
+        const result = await axios.post(initUrl + "/doc/get/" + did, {},config);
         console.log(result.data.email);
         setUsername(result.data.name);
         setEmail(result.data.email);
@@ -32,7 +32,7 @@ export default function AdminDoctorDetailsEdit(props){
         e.preventDefault();
         const config = getConfig();
         const details = { did,name:username, bDate, email, lic, qual, specs };
-        const result = await axios.put(initUrl+"/doc/change/"+did,details,config);
+        const result = await axios.post(initUrl+"/doc/change/"+did,details,config);
         console.log(result);
         navigate("/admin/doctor/"+did);
       };

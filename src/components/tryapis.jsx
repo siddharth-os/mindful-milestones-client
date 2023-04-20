@@ -11,7 +11,7 @@ export default function Tryapi(){
               'Authorization':token,
             },
           }
-        const res= await axios.get("http://localhost:8080/try/something",config);
+        const res= await axios.post("http://localhost:8080/try/something",{},config);
         // localStorage.setItem('test',res.data\\);
         console.log("here");
         console.log(res);

@@ -13,7 +13,7 @@ export default function DoctorDetailsDiv(props) {
   }, []);
   const fetchData = async () => {
     const config = getConfig();
-    const result = await axios.get(initUrl + "/doc/get/" + did, config);
+    const result = await axios.post(initUrl + "/doc/get/" + did,{}, config);
     setDocDetail(result.data);
   };
   return (
