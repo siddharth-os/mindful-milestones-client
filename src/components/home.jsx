@@ -50,9 +50,9 @@ export default function Home() {
         <div className="col-md-6" style={{ display: "flex"}}>
           <img
             className="doctor-img"
-            src={require("./images/mm.gif")}
+            src={require("./images/app.gif")}
             alt="logo"
-            style={{ height: "400px", width: "400px",margin: "1rem auto"}}
+            style={{borderRadius:"0",height:"500px",width:"400px",margin: "1rem auto",border:"solid"}}
           />
         </div>
       </div>
