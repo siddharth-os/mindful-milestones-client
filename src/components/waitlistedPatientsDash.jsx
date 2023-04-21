@@ -46,7 +46,7 @@ export default function WaitlistedPatientsDash(){
                   {ele.username.toUpperCase()}
                 </td>
                 <td>
-                  <Link to={`/doctor/patient/${ele.id}`}>Consult</Link> 
+                  <Link to={`/doctor/patient/${ele.id}`}>View</Link> 
                 </td>
               </tr>
             )

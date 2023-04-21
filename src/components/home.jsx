@@ -48,12 +48,13 @@ export default function Home() {
           </div>
         </div>
         <div className="col-md-6" style={{ display: "flex"}}>
-          <img
+          <h1><i>place for image</i></h1>
+          {/* <img
             className="doctor-img"
             src={require("./images/app.gif")}
             alt="logo"
             style={{borderRadius:"0",height:"500px",width:"400px",margin: "1rem auto",border:"solid"}}
-          />
+          /> */}
         </div>
       </div>
     </div>

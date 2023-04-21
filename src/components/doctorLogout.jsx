@@ -10,6 +10,9 @@ export default function DoctorLogoutSideBar(){
         navigate("/");
     }
     return(
-        <h4 style={{textAlign:"center",cursor:"pointer",color:"#800020"}} onClick={handleClick}><i class="fa-solid fa-right-from-bracket"></i> Logout</h4>
+        <div style={{textAlign:"center"}}>
+            <h4 style={{textAlign:"center",cursor:"pointer",color:"#800020"}} onClick={handleClick}><i class="fa-solid fa-right-from-bracket"></i> Logout</h4>
+            <a href="/doctor/reset">Reset Password</a>
+        </div>
     );
 }

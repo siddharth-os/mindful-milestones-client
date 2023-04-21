@@ -13,6 +13,8 @@ import TaskManagement from './components/taskManagement';
 import AdminDoctorDetails from './components/adminDoctorDetails';
 import DoctorPatientChat from './components/doctorPatientChat';
 import AdminDoctorDetailsEdit from './components/AdminDoctorDetailsEdit';
+import DoctorForget from './components/doctorForget';
+import DoctorReset from './components/doctorReset';
 function App() {
   return (
     <div className="App">
@@ -27,6 +29,8 @@ function App() {
         <Route path="/admin/doctor/:did" element={<AdminDoctorDetails/>}/>
         <Route path="/admin/doctor/edit/:did" element={<AdminDoctorDetailsEdit/>}/>
         <Route path="/doctor/home" element={<DoctorHome/>}/>
+        <Route path="/doctor/forget" element={<DoctorForget/>}/>
+        <Route path="/doctor/reset" element={<DoctorReset/>}/>
         <Route path="/doctor/patient/:id" element={<PatientPage/>}/>
         <Route path="/doctor/patient/:id/task" element={<TaskManagement/>}/>
         <Route path="/doctor/patient/id/chat" element={<DoctorPatientChat/>}/>

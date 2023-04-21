@@ -8,6 +8,7 @@ export default function Questionnaire(props) {
   const l = [1, 2, 3, 4, 5, 6, 7, 8];
   const [ques,setques]=useState([]);
   const {pid}=props;
+  const questions=["Little interest or pleasure in doing things?","Feeling down, depressed, or hopeless?","Feeling bad about yourself or that you are a failure or have let yourself or your family down?","Thoughts that you would be better hurting yourself?","Moving or speaking so slowly that other people could have noticed?","Feeling tired or having little energy?","Poor appetite or overeating?","Feeling bad about yourself?"];
   useEffect(()=>{
     const fetchData = async()=>{
       try {
@@ -48,7 +49,7 @@ export default function Questionnaire(props) {
         {ques.map((ele,index) => {
           return (
             <div className="question" style={questionStyle}>
-              <h5>How are you feeling today?</h5>
+              <h5>{questions[index]}</h5>
               <div class="progress">
                 <div
                   class="progress-bar"

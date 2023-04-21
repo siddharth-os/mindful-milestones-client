@@ -4,30 +4,27 @@ import Avatar from "@mui/material/Avatar";
 import {Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { initUrl, isAdmin, isDoctor } from "../auth/auth";
-export default function DoctorLogin() {
+import { getConfig, initUrl, isAdmin, isDoctor } from "../auth/auth";
+export default function DoctorForget() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email2, setEmail2] = useState("");
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(isAdmin()){
-      navigate("/admin/home");
-    }
-    if(isDoctor()){
-      navigate("/doctor/home");
-    }
-  },[]);
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(initUrl+"/doc/authenticate",{username:email,password,role:1});
-      localStorage.setItem('jwtToken',res.data.jwttoken);
-      localStorage.setItem('role',1);
-      localStorage.setItem('id',res.data.did);
-      navigate("/doctor/home");
+      //Call api here
+      if(email===email2){
+        const res = await axios.post(initUrl+"/forgotpass",{role:1,username:email});
+        alert("Check your email for new password");
+        navigate("/doctor/login");
+      }
+      else{
+        alert("Username Mismatched");
+      }
+      
     } catch (error) {
       alert("Error Encounterd");
-      navigate("/doctor/login"); 
+      navigate("/doctor/forget"); 
     }
 
   };
@@ -50,10 +47,10 @@ export default function DoctorLogin() {
             >
               D
             </Avatar>
-            <h2>Doctor Login</h2>
+            <h2>Recover Password</h2>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">Username</label>
             <input
               type="text"
               class="form-control"
@@ -66,18 +63,18 @@ export default function DoctorLogin() {
             />
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="exampleInputEmail1">Re-Enter Username</label>
             <input
               type="password"
               class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
+              id="exampleInputEmail23"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
               style={{ borderRadius: "0" }}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={email2}
+              onChange={(e) => setEmail2(e.target.value)}
             />
           </div>
-          {/* <Link to={`/doctor/home`} style={{textDecoration:"none"}}> */}
           <button
             type="submit"
             class="btn btn-dark"
@@ -86,9 +83,6 @@ export default function DoctorLogin() {
             Submit
           </button>
         </form>
-        <div style={{display:"flex",justifyContent:"center"}}>
-        <a href="/doctor/forget">Forget Password?</a>
-        </div>
       </div>
     </div>
   );

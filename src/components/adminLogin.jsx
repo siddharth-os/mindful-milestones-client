@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { checkForAdminTokenExist, initUrl, isAdmin, isDoctor, isTokenExist } from "../auth/auth";
 import AdminHome from "./adminHome";
 export default function AdminLogin() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("s");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   useEffect(()=>{
