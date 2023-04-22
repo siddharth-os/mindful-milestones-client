@@ -37,11 +37,11 @@ export default function TaskManagement() {
       <div style={{ backgroundColor: "#FDF4F5", padding: "0.5rem",textAlign:"center",borderRadius:"20px", boxShadow: "8px 8px 8px gray", }}>
           <h2 className="dark-blue-heading">Manage Task and Activities for {detail.name}</h2>
       </div>
-      <div className="container row" style={{ margin: "1rem auto" }}>
+      <div className="container row" style={{ margin: "1rem auto",justifyContent:"center" }}>
         <div className="col-12 col-md-4 doc-sidebar-main">
           <div style={sideBarStyle}>
             <h2 className="blue-heading" style={headingStyle}>
-              Activity Assign
+              Activity
             </h2>
             <hr />
             <TaskList pid={id}/>
@@ -50,16 +50,16 @@ export default function TaskManagement() {
         <div className="col-12 col-md-4">
           <div style={sideBarStyle}>
             <h2 className="blue-heading" style={headingStyle}>
-              Video Links
+              Video
             </h2>
             <hr />
-            <VideoLinkList />
+            <VideoLinkList pid={id} />
           </div>
         </div>
         <div className="col-12 col-md-4">
           <div style={sideBarStyle}>
             <h2 className="blue-heading" style={headingStyle}>
-              Audio Links
+              Audio
             </h2>
             <hr />
             <AudioLinkList />

@@ -8,9 +8,10 @@ export function isTokenExist(){
 }
 export function logout(){
     localStorage.clear();
+    for(let i=0;i<10000;i++);
 }
 // export const initUrl="http://localhost:8080";
-export const initUrl = "https://c4bb-119-161-98-68.ngrok-free.app";
+export const initUrl = "https://ff0f-119-161-98-68.ngrok-free.app";
 
 export function checkForTokenExist(){
     return localStorage.getItem('jwtToken');
@@ -50,6 +51,13 @@ export function isDoctor(){
     if(getToken() && getRole()==='1'){
         return true;
     }
+    else
+        return false;
+}
+
+export function isLoggedIn(){
+    if(getToken())
+        return true;
     else
         return false;
 }

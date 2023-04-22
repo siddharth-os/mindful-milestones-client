@@ -1,20 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
+import VideoCheckComponent from "./videoCheckComponent";
+import { getConfig, initUrl } from "../auth/auth";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { elementAcceptingRef } from "@mui/utils";
 
-export default function VideoLinkList() {
+export default function VideoLinkList(props) {
+  const pid=props.pid;
   const l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 1, 1, 1, 1, 1];
   const [newTask, setNewTask] = useState("");
-
+  const [newTaskLink,setNewTaskLink]=useState("");
+  const [taskList,setTaskList] = useState([]);
+  const navigate = useNavigate();
+  const fetchData = async (e)=>{
+    try {
+      const config = getConfig();
+      const res = await axios.post(initUrl+"/getall/tesks/typetwo",{},config);
+      setTaskList(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+      alert("Error Encountered");
+      // navigate("/");
+    }
+  }
+  useEffect(()=>{
+    fetchData();
+  },[])
   const handleChangeActivity = (e) => {
     setNewTask(e.target.value);
   };
   const handleActivitySubmit = (e) => {
     e.preventDefault();
-    console.log(newTask);
+    try {
+      if(newTask.length>0){
+        const config = getConfig();
+        const res = axios.post(initUrl+"/task/add",{tasktype:2,tasktext:newTask,tasklink:newTaskLink},config);
+        window.location.reload();
+      }
+      else{
+        alert("Please enter task");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
-      <div className="task-list" style={{ height: "300px", overflow: "auto" }}>
+      <div className="task-list" style={{ height: "250px", overflow: "auto" }}>
         <table class="table">
           <thead>
             <tr>
@@ -23,20 +57,14 @@ export default function VideoLinkList() {
             </tr>
           </thead>
           <tbody>
-            {l.map((e) => {
+            {taskList.map((e,index) => {
               return (
                 <tr>
                   <td>
                     {/* <input className="checkbox-activity" type="checkbox" name="isAssigned" /> */}
-                    <div class="form-check form-switch">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="flexSwitchCheckChecked"
-                      />
-                    </div>
+                    <VideoCheckComponent tid={e.tid} pid={pid}/>
                   </td>
-                  <td>https://youtu.be/kJIidWqWjUs</td>
+                  <td>{e.tasktext}</td>
                 </tr>
               );
             })}
@@ -45,14 +73,26 @@ export default function VideoLinkList() {
       </div>
       <hr />
       <form style={{ textAlign: "center" }} onSubmit={handleActivitySubmit}>
+        <div>
         <TextField
           id="standard-basic"
-          label="Add New Link"
+          label="Add Title Of Video"
           variant="standard"
           value={newTask}
           onChange={handleChangeActivity}
           fullWidth
+          required
         />
+        <TextField
+          id="standard-basic"
+          label="Add New Link"
+          variant="standard"
+          value={newTaskLink}
+          onChange={(e)=>setNewTaskLink(e.target.value)}
+          fullWidth
+          required
+        />
+        </div>
         <button
           className="btn btn-primary btn-sm"
           type="submit"

@@ -15,19 +15,21 @@ import DoctorPatientChat from './components/doctorPatientChat';
 import AdminDoctorDetailsEdit from './components/AdminDoctorDetailsEdit';
 import DoctorForget from './components/doctorForget';
 import DoctorReset from './components/doctorReset';
+import { isAdmin, isDoctor, isLoggedIn } from './auth/auth';
+import WarningPage from './components/warningPage';
 function App() {
   return (
     <div className="App">
       <Navbar/>
       <Router>
         <Routes>
-        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/" element={isLoggedIn()?<AdminLogin/>:<Home/>}/>
         <Route path="/admin/login" element={<AdminLogin/>}/>
         <Route path="/doctor/login" element={<DoctorLogin/>}/>
         <Route path="/admin/home" element={<AdminHome/>}/>
-        <Route path="/admin/add" element={<AddDoctor/>}/>
-        <Route path="/admin/doctor/:did" element={<AdminDoctorDetails/>}/>
-        <Route path="/admin/doctor/edit/:did" element={<AdminDoctorDetailsEdit/>}/>
+        <Route path="/admin/add" element={isAdmin()?<AddDoctor/>:<WarningPage/>}/>
+        <Route path="/admin/doctor/:did" element={isAdmin()?<AdminDoctorDetails/>:<WarningPage/>}/>
+        <Route path="/admin/doctor/edit/:did" element={isAdmin()?<AdminDoctorDetailsEdit/>:<WarningPage/>}/>
         <Route path="/doctor/home" element={<DoctorHome/>}/>
         <Route path="/doctor/forget" element={<DoctorForget/>}/>
         <Route path="/doctor/reset" element={<DoctorReset/>}/>

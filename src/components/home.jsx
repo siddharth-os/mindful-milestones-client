@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { isAdmin, isDoctor } from "../auth/auth";
+import { isAdmin, isDoctor, isLoggedIn } from "../auth/auth";
 export default function Home() {
   const scss = {
     backgroundColor: "blue",
   };
   const navigate = useNavigate();
   useEffect(() => {
+    if(!isLoggedIn()){
+      navigate("/");
+    }
     if (isAdmin()) {
       navigate("/admin/home");
     }

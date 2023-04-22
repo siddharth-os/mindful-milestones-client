@@ -24,7 +24,7 @@ export default function DoctorLogin() {
       localStorage.setItem('jwtToken',res.data.jwttoken);
       localStorage.setItem('role',1);
       localStorage.setItem('id',res.data.did);
-      navigate("/doctor/home");
+      navigate("/");
     } catch (error) {
       alert("Error Encounterd");
       navigate("/doctor/login"); 

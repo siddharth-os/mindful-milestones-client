@@ -59,7 +59,7 @@ export default function TaskList(props) {
               return (
                 <tr>
                   <td>
-                    {/* <input className="checkbox-activity" type="checkbox" name="isAssigned" /> */}
+                    
                     <TaskCheckComponent tid={ele.tid} pid={pid}/>
                   </td>
                   <td>{ele.tasktext}</td>
@@ -78,6 +78,7 @@ export default function TaskList(props) {
           value={newTask}
           onChange={handleChangeActivity}
           fullWidth
+          required
         />
         <button
           className="btn btn-primary btn-sm"
