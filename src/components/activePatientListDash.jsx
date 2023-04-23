@@ -44,7 +44,7 @@ export default function ActivePatientListDash() {
                 <td>
                   {ele.uname.toUpperCase()}
                 </td>
-                <td>{ele.completed/ele.assigned}%</td>
+                <td>{Math.round( ele.completed*100/ele.assigned)}%</td>
                 <td>
                   <Link to={`/doctor/patient/${activeList[index].pid}`}>View</Link>
                 </td>

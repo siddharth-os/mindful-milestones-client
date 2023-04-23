@@ -11,7 +11,8 @@ import PatientBackButton from "./patientBackButton";
 import { useParams } from "react-router-dom";
 import { getConfig, initUrl } from "../auth/auth";
 import axios from "axios";
-export default function PatientPage(){
+import Chat from "./chat";
+export default function PatientPageWithChat(){
     
     const {id}=useParams();
     useEffect(()=>{
@@ -41,11 +42,7 @@ export default function PatientPage(){
         <hr />
         <PatientBackButton/>
       </div>
-      <div className="col-12 col-md-8">
-        <PatientTopCard pid ={id}/>
-        <PatientDashboardCard pid={id}/>
-        <Questionnaire pid = {id}/>
-      </div>
+        <Chat pid={id}/>
     </div>
     );
 }

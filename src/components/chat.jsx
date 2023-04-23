@@ -1,10 +1,29 @@
 import { Avatar } from "@mui/material";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getConfig, initUrl } from "../auth/auth";
 import TaskList from "./taskList";
 
-export default function Chat() {
+export default function Chat(props) {
+  const {pid}=props;
   const [newMessage, setNewMessage] = useState("");
+  const [chats,setNewChats] = useState([]);
+  useEffect(()=>{
+    const fetchChat = async ()=>{
+        try {
+            const config =  getConfig();
+            const did = localStorage.getItem('id');
+            const res = await axios.post(initUrl+"/get/chats",{did,pid},config);
+            setNewChats(res.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    fetchChat();
 
+  },[chats])
   const sideBarStyle = {
     backgroundColor: "#FDF4F5",
     padding: "0.5rem",
@@ -15,36 +34,42 @@ export default function Chat() {
     backgroundColor: "#EBC6C9",
     listStyleType: "none",
     width: "60%",
-    padding: "0.5rem",
+    padding: "0.7rem",
     margin: "0.6rem",
     borderRadius:"20px",
+    borderBottomLeftRadius:"0"
   };
   const liStyleDoc = {
     backgroundColor: "#EBC6C9",
     listStyleType: "none",
     width: "60%",
-    padding: "0.5rem",
+    padding: "0.7rem",
     margin: "0.6rem",
     position: "relative",
     left: "7rem",
     borderRadius:"20px",
+    borderBottomRightRadius:"0",
+    borderBottomLeftRadius:"20px"
   };
   //   "#F8E3E5"
-  const l = [
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 1 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 2 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 2 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 1 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 1 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 2 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 1 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 2 },
-    { msg: "helloasmlfak alsnlfajks falsknfalskflas lkanslfknalsfk", id: 1 },
-  ];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const config =  getConfig();
+        const did = localStorage.getItem('id');
+        const res = await axios.post(initUrl+"/send/msg",{did,pid,msg:newMessage,sentfrom:1},config);
+        console.log(res.data);
+        // console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(res.data[0].whensent));
+        setNewMessage("");
+    } catch (error) {
+        console.log(error);
+    }
+  };
   return (
+    
     <div
       className="col-12 col-md-4 doc-sidebar-main"
-      style={{ margin: "1rem auto" }}
+      style={{ margin: "0.1rem auto" }}
     >
       <div style={sideBarStyle}>
         <hr />
@@ -55,18 +80,18 @@ export default function Chat() {
           Chat
         </h2>
         <hr />
-        <div className="chat-box" style={{ height: "400px", overflow: "auto" }}>
+        <div className="chat-box scrollable-container" style={{ height: "400px", overflow: "auto" }}>
           <ul>
-            {l.map((ele, index) => {
-              if (ele.id === 1) {
-                return <li style={liStylePat}>{ele.msg}</li>;
+            {chats.map((ele, index) => {
+              if (ele.sentfrom === 1) {
+                return <li style={liStyleDoc}>{ele.msg} <small style={{display:"block"}}>{ele.sentwhen}</small></li>;
               } else {
-                return <li style={liStyleDoc}>{ele.msg}</li>;
+                return <li style={liStylePat}>{ele.msg} <small style={{display:"block"}}>{ele.sentwhen}</small></li>;
               }
             })}
           </ul>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="form-group" style={{ marginBottom: "1rem" }}>
               <input
                 type="text"
@@ -82,8 +107,8 @@ export default function Chat() {
             <div style={{ display: "flex", justifyContent: "center" }}>
               <button
                 type="submit"
-                className="btn btn-primary btn-block"
-                style={{ borderRadius: "20px" }}
+                className="btn btn-dark btn-block"
+                style={{ borderRadius: "20px",width:"100%"}}
               >
                 <i class="fa-sharp fa-solid fa-paper-plane"></i> Send
               </button>

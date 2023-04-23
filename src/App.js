@@ -17,6 +17,7 @@ import DoctorReset from './components/doctorReset';
 import { isAdmin, isDoctor, isLoggedIn } from './auth/auth';
 import WarningPage from './components/warningPage';
 import Chat from './components/chat';
+import PatientPageWithChat from './components/patientPageWithChat';
 function App() {
   return (
     <div className="App">
@@ -35,7 +36,7 @@ function App() {
         <Route path="/doctor/reset" element={<DoctorReset/>}/>
         <Route path="/doctor/patient/:id" element={<PatientPage/>}/>
         <Route path="/doctor/patient/:id/task" element={<TaskManagement/>}/>
-        <Route path="/doctor/patient/:id/chat" element={<Chat/>}/>
+        <Route path="/doctor/patient/:id/chat" element={<PatientPageWithChat/>}/>
         <Route path="/try/api" element={<Tryapi/>}/>
         </Routes>
         <Footer/>
