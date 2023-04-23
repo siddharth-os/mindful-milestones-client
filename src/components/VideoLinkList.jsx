@@ -31,12 +31,12 @@ export default function VideoLinkList(props) {
   const handleChangeActivity = (e) => {
     setNewTask(e.target.value);
   };
-  const handleActivitySubmit = (e) => {
+  const handleActivitySubmit = async(e) => {
     e.preventDefault();
     try {
       if(newTask.length>0){
         const config = getConfig();
-        const res = axios.post(initUrl+"/task/add",{tasktype:2,tasktext:newTask,tasklink:newTaskLink},config);
+        const res = await axios.post(initUrl+"/task/add",{tasktype:2,tasktext:newTask,tasklink:newTaskLink},config);
         window.location.reload();
       }
       else{

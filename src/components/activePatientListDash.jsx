@@ -12,7 +12,7 @@ export default function ActivePatientListDash() {
         const config = getConfig();
         const did = localStorage.getItem('id');
         const res = await axios.post(initUrl+"/consult/activ/"+did,{},config);
-        // console.log(res.data);
+        console.log(res.data);
         setActiveList(res.data);
       } catch (error) {
         console.log(error);
@@ -30,6 +30,7 @@ export default function ActivePatientListDash() {
         <tr className="blue-heading">
           <th scope="col">Avatar</th>
           <th scope="col">Name</th>
+          <th scope="col">Status</th>
           <th scope="col">More Info</th>
         </tr>
       </thead>
@@ -38,13 +39,14 @@ export default function ActivePatientListDash() {
             return(
                 <tr>
                 <td>
-                  <Avatar style={{height:"24px",width:"24px",margin:"1px auto"}}>{ele.username[0].toUpperCase()}</Avatar>
+                  <Avatar className="" style={{height:"24px",width:"24px",margin:"1px auto",background:"#00d2ff"}}>{ele.uname[0].toUpperCase()}</Avatar>
                 </td>
                 <td>
-                  {ele.username.toUpperCase()}
+                  {ele.uname.toUpperCase()}
                 </td>
+                <td>{ele.completed/ele.assigned}%</td>
                 <td>
-                  <Link to={`/doctor/patient/${activeList[index].id}`}>More Info</Link>
+                  <Link to={`/doctor/patient/${activeList[index].pid}`}>View</Link>
                 </td>
               </tr>
             )

@@ -11,12 +11,12 @@ import DoctorHome from './components/doctorHome';
 import PatientPage from './components/patientPage';
 import TaskManagement from './components/taskManagement';
 import AdminDoctorDetails from './components/adminDoctorDetails';
-import DoctorPatientChat from './components/doctorPatientChat';
 import AdminDoctorDetailsEdit from './components/AdminDoctorDetailsEdit';
 import DoctorForget from './components/doctorForget';
 import DoctorReset from './components/doctorReset';
 import { isAdmin, isDoctor, isLoggedIn } from './auth/auth';
 import WarningPage from './components/warningPage';
+import Chat from './components/chat';
 function App() {
   return (
     <div className="App">
@@ -35,7 +35,7 @@ function App() {
         <Route path="/doctor/reset" element={<DoctorReset/>}/>
         <Route path="/doctor/patient/:id" element={<PatientPage/>}/>
         <Route path="/doctor/patient/:id/task" element={<TaskManagement/>}/>
-        <Route path="/doctor/patient/id/chat" element={<DoctorPatientChat/>}/>
+        <Route path="/doctor/patient/:id/chat" element={<Chat/>}/>
         <Route path="/try/api" element={<Tryapi/>}/>
         </Routes>
         <Footer/>

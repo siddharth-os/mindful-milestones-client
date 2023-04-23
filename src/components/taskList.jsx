@@ -34,7 +34,7 @@ export default function TaskList(props) {
     try {
       if(newTask.length>0){
         const config = getConfig();
-        const res = axios.post(initUrl+"/task/add",{tasktype:1,tasktext:newTask},config);
+        const res = await axios.post(initUrl+"/task/add",{tasktype:1,tasktext:newTask},config);
         window.location.reload();
       }
       else{

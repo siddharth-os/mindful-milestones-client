@@ -40,7 +40,7 @@ export default function WaitlistedPatientsDash(){
             return(
                 <tr>
                 <td>
-                  <Avatar style={{height:"24px",width:"24px",margin:"1px auto"}}>{ele.username[0].toUpperCase()}</Avatar>
+                  <Avatar style={{height:"24px",width:"24px",margin:"1px auto",background:"#00d2ff"}}>{ele.username[0].toUpperCase()}</Avatar>
                 </td>
                 <td>
                   {ele.username.toUpperCase()}
