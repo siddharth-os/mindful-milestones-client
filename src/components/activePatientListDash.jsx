@@ -20,6 +20,21 @@ export default function ActivePatientListDash() {
     }
     fetchData();
   },[]);
+  const statusColor = (completed,assigned)=>{
+    let l = Math.round( completed*100/assigned);
+    if(assigned===0){
+      return "red";
+    }
+    else if(l<30){
+      return "red";
+    }
+    else if(l<60){
+      return "orange";
+    }
+    else{
+      return "green";
+    }
+  }
   const divStyle={
     height:"300px",width:"100%",overflow:"auto",paddingBottom:"1rem",borderBottomLeftRadius:"20px",borderBottomRightRadius:"20px",boxShadow:"8px 8px 8px gray",backgroundColor:"#FDF4F5"
   }
@@ -44,7 +59,7 @@ export default function ActivePatientListDash() {
                 <td>
                   {ele.uname.toUpperCase()}
                 </td>
-                <td>{Math.round( ele.completed*100/ele.assigned)}%</td>
+                <td style={{color:statusColor(ele.completed,ele.assigned)}}>{Math.round( ele.completed*100/ele.assigned)}%</td>
                 {/* <td><CircularProgress variant="determinate" value={Math.round( ele.completed*100/ele.assigned)} style={{}}>{10}</CircularProgress></td> */}
                 <td>
                   <Link to={`/doctor/patient/${activeList[index].pid}`}>View</Link>

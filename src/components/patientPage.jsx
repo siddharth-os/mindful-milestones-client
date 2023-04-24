@@ -11,6 +11,7 @@ import PatientBackButton from "./patientBackButton";
 import { useParams } from "react-router-dom";
 import { getConfig, initUrl } from "../auth/auth";
 import axios from "axios";
+import NoteAndQues from "./doctorNoteAndQuestion";
 export default function PatientPage(){
     
     const {id}=useParams();
@@ -44,7 +45,8 @@ export default function PatientPage(){
       <div className="col-12 col-md-8">
         <PatientTopCard pid ={id}/>
         <PatientDashboardCard pid={id}/>
-        <Questionnaire pid = {id}/>
+        <NoteAndQues pid={id}/>
+        {/* <Questionnaire pid = {id}/> */}
       </div>
     </div>
     );

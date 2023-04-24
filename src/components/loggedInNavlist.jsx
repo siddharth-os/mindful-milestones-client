@@ -14,8 +14,8 @@ export default function LoggedInNavList(){
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">
-            Feedback
+          <a className="nav-link" href="/testimonials">
+            Testimonials
           </a>
         </li>
       </ul>

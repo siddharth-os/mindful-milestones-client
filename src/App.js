@@ -18,6 +18,7 @@ import { isAdmin, isDoctor, isLoggedIn } from './auth/auth';
 import WarningPage from './components/warningPage';
 import Chat from './components/chat';
 import PatientPageWithChat from './components/patientPageWithChat';
+import Testimonials from './components/testimonials';
 function App() {
   return (
     <div className="App">
@@ -37,6 +38,7 @@ function App() {
         <Route path="/doctor/patient/:id" element={<PatientPage/>}/>
         <Route path="/doctor/patient/:id/task" element={<TaskManagement/>}/>
         <Route path="/doctor/patient/:id/chat" element={<PatientPageWithChat/>}/>
+        <Route path="/testimonials" element={<Testimonials/>}/>
         <Route path="/try/api" element={<Tryapi/>}/>
         </Routes>
         <Footer/>

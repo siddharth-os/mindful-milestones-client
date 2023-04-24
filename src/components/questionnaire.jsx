@@ -40,11 +40,11 @@ export default function Questionnaire(props) {
     marginBottom:"1rem"
   };
   return (
-    <div className="container col-md-8" style={{marginLeft:"0.5rem"}}>
+    <div className="container col-md-8" style={{marginLeft:"0"}}>
       <h3 style={headingStyle}>Questionnaire Filled By Patient</h3>
       <div
         className="main-question-div"
-        style={{ height: "250px", overflow: "auto",margin:"1rem auto" }}
+        style={{ height: "250px", overflow: "auto",margin:"0.2rem auto" }}
       >
         {ques.map((ele,index) => {
           return (

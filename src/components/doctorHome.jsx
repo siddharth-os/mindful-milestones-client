@@ -12,7 +12,7 @@ export default function DoctorHome() {
   const navigate = useNavigate();
   const sideBarStyle={
     backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
-
+    
   }
   if(!isDoctor()){
     logout();
