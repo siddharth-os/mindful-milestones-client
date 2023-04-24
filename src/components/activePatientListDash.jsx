@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import { Avatar, CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getConfig, initUrl } from "../auth/auth";
@@ -45,6 +45,7 @@ export default function ActivePatientListDash() {
                   {ele.uname.toUpperCase()}
                 </td>
                 <td>{Math.round( ele.completed*100/ele.assigned)}%</td>
+                {/* <td><CircularProgress variant="determinate" value={Math.round( ele.completed*100/ele.assigned)} style={{}}>{10}</CircularProgress></td> */}
                 <td>
                   <Link to={`/doctor/patient/${activeList[index].pid}`}>View</Link>
                 </td>

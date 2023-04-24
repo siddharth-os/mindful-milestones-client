@@ -15,6 +15,7 @@ export default function DoctorForget() {
       //Call api here
       if(email===email2){
         const res = await axios.post(initUrl+"/forgotpass",{role:1,username:email});
+        alert("Please Wait....");
         alert("Check your email for new password");
         navigate("/doctor/login");
       }

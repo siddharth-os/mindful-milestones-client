@@ -84,9 +84,9 @@ export default function Chat(props) {
           <ul>
             {chats.map((ele, index) => {
               if (ele.sentfrom === 1) {
-                return <li style={liStyleDoc}>{ele.msg} <small style={{display:"block"}}>{ele.sentwhen}</small></li>;
+                return <li style={liStyleDoc}>{ele.msg} <small style={{display:"block",color:"gray",textAlign:"right",marginTop:"1rem"}}>{ele.sentwhen.substring(14,19)} <i class="fa-solid fa-check-double"></i></small></li>;
               } else {
-                return <li style={liStylePat}>{ele.msg} <small style={{display:"block"}}>{ele.sentwhen}</small></li>;
+                return <li style={liStylePat}>{ele.msg} <small style={{display:"block",color:"gray",textAlign:"left",marginTop:"1rem"}}>{ele.sentwhen.substring(14,19)} <i class="fa-solid fa-check-double"></i></small></li>;
               }
             })}
           </ul>

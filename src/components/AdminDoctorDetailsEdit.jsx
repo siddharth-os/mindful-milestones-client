@@ -37,12 +37,12 @@ export default function AdminDoctorDetailsEdit(props){
         navigate("/admin/doctor/"+did);
       };
     return (
-        <div className="container row">
+        <div className="container row" style={{margin: "0.5rem auto"}}>
           <div className="col-12 col-md-3">
             <AdminSidebar/>
           </div>
           <div className="col-12 col-md-9">
-            <div className="col-md-6 bg-light" style={{margin:"0 auto "}}>
+            <div className="col-md-6 bg-light" style={{margin:"0.1rem auto "}}>
               <form style={{ opacity: "1" ,padding:"1rem"}} onSubmit={(e) => handleSubmit(e)}>
                 <div style={{ textAlign: "center" }}>
                   <h2>Edit Details</h2>
@@ -58,6 +58,7 @@ export default function AdminDoctorDetailsEdit(props){
                     style={{ borderRadius: "0" }}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className="form-group">
@@ -71,6 +72,7 @@ export default function AdminDoctorDetailsEdit(props){
                     style={{ borderRadius: "0" }}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className="form-group">

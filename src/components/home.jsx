@@ -22,7 +22,7 @@ export default function Home() {
       <div className="row">
         <div className="col-md-6">
           <h1 style={{ marginBottom: "1rem" }}>Mindful Milestones</h1>
-          <h4>
+          <h4 style={{textAlign:"justify"}}>
             Mindful Milestones is a comprehensive health care application
             designed for mental health patients, featuring a user-friendly web
             dashboard for admins and doctors, and a mobile app for patients. The
@@ -51,13 +51,13 @@ export default function Home() {
           </div>
         </div>
         <div className="col-md-6" style={{ display: "flex"}}>
-          <h1><i>place for image</i></h1>
-          {/* <img
+          {/* <h1><i>place for image</i></h1> */}
+          <img
             className="doctor-img"
-            src={require("./images/app.gif")}
+            src={require("./images/h2.gif")}
             alt="logo"
-            style={{borderRadius:"0",height:"500px",width:"400px",margin: "1rem auto",border:"solid"}}
-          /> */}
+            style={{borderRadius:"0",height:"500px",width:"500px",margin: "1rem auto"}}
+          />
         </div>
       </div>
     </div>

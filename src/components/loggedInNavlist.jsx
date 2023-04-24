@@ -2,7 +2,7 @@ import React from "react";
 
 export default function LoggedInNavList(){
     return(
-        <ul className="navbar-nav">
+        <ul className="navbar-nav" style={{fontSize:"18px"}}>
         <li className="nav-item active">
           <a className="nav-link" href="/">
               Home

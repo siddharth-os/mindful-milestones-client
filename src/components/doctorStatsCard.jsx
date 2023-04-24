@@ -30,21 +30,21 @@ export default function DoctorStatsCard() {
     <div style={{}}>
       <div className="row">
         <div className="col-md-4" style={{backgroundColor:"",margin:"0.5rem auto"}}>
-          <h3 style={headingStyles}>{consult}</h3>
+          <h4 style={headingStyles}>{consult}</h4>
           <small>Consultations</small>
         </div>
         <div className="col-md-4" style={{backgroundColor:"",margin:"0.5rem auto"}}>
-          <h3 style={headingStyles}>{pending}</h3>
+          <h4 style={headingStyles}>{pending}</h4>
           <small>Pending</small>
         </div>
       </div>
       <div className="row">
         <div className="col-md-4" style={{backgroundColor:"",margin:"0.5rem auto"}}>
-          <h3 style={headingStyles}>9</h3>
+          <h4 style={headingStyles}>9</h4>
           <small>Experience(yrs)</small>
         </div>
-        <div className="col-md-4" style={{backgroundColor:"",margin:"0.5rem auto"}}>
-          <h3 style={headingStyles}>3</h3>
+        <div className="col-md-4 disabled" style={{backgroundColor:"",margin:"0.5rem auto",opacity:"0.3"}}>
+          <h4 style={headingStyles}>3</h4>
           <small>Referrals</small>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function AdminHome() {
     };
     const [doclist,setDoclist]=useState();
     const [countOfDoc,setCountOfDoc] = useState(0);
-    const [patCount,setPatCount] = useState("");
+    const [patCount,setPatCount] = useState(0);
     const navigate = useNavigate();
     useEffect(()=>{
       if(!isAdmin()){

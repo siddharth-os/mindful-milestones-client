@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { checkForAdminTokenExist, initUrl, isAdmin, isDoctor, isTokenExist } from "../auth/auth";
 import AdminHome from "./adminHome";
 export default function AdminLogin() {
-  const [email, setEmail] = useState("s");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   useEffect(()=>{
@@ -28,7 +28,7 @@ export default function AdminLogin() {
       navigate("/admin/home");
     } catch (error) {
       console.log(error);
-      alert("Error Encountered"); 
+      alert("Invalid Credentials"); 
       navigate("/admin/login");
     }
   }

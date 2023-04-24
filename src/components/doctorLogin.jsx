@@ -26,7 +26,7 @@ export default function DoctorLogin() {
       localStorage.setItem('id',res.data.did);
       navigate("/");
     } catch (error) {
-      alert("Error Encounterd");
+      alert("Invalid creds");
       navigate("/doctor/login"); 
     }
 
@@ -87,7 +87,7 @@ export default function DoctorLogin() {
           </button>
         </form>
         <div style={{display:"flex",justifyContent:"center"}}>
-        <a href="/doctor/forget">Forget Password?</a>
+        <a href="/doctor/forget">Forgot Password?</a>
         </div>
       </div>
     </div>

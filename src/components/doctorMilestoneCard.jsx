@@ -22,15 +22,15 @@ export default function DoctorMilestoneCard() {
   return (
     <div className="doctor-milestone-card" style={{paddingRight:"2rem",paddingLeft:"2rem"}}>
       <h4 className="blue-heading">{patientConsulted} Patients</h4>
-      <small>Next Milestone 100 Patients</small>
+      <small>Next Milestone 10 Patients</small>
       <div class="progress">
         <div
           className="progress-bar bg-info"
           role="progressbar"
-          style={{width:patientConsulted+"%"}}
+          style={{width:patientConsulted*10+"%"}}
           aria-valuenow={patientConsulted}
           aria-valuemin="0"
-          aria-valuemax="100"
+          aria-valuemax="10"
         ></div>
       </div>
     </div>

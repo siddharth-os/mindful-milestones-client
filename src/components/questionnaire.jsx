@@ -40,8 +40,8 @@ export default function Questionnaire(props) {
     marginBottom:"1rem"
   };
   return (
-    <div className="container" style={{marginLeft:"0.5rem"}}>
-      <h2 style={headingStyle}>Questionnaire Filled By Patient</h2>
+    <div className="container col-md-8" style={{marginLeft:"0.5rem"}}>
+      <h3 style={headingStyle}>Questionnaire Filled By Patient</h3>
       <div
         className="main-question-div"
         style={{ height: "250px", overflow: "auto",margin:"1rem auto" }}
@@ -49,7 +49,7 @@ export default function Questionnaire(props) {
         {ques.map((ele,index) => {
           return (
             <div className="question" style={questionStyle}>
-              <h5>{questions[index]}</h5>
+              <h6>{questions[index]}</h6>
               <div class="progress">
                 <div
                   class="progress-bar"

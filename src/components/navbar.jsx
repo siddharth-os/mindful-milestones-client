@@ -7,7 +7,7 @@ export default function Navbar() {
 // font-family: 'Rubik Vinyl', cursive;
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{opacity:0.6,padding:"1rem",marginBottom:"1rem",}}>
-      <a className="navbar-brand" href="/" style={{fontSize:"2rem",fontFamily: "'Dancing Script', cursive"}}>
+      <a className="navbar-brand" href="/" style={{fontSize:"2rem",fontFamily: "'Dancing Script', cursive",marginLeft:"1rem"}}>
         Mindful MileStones
       </a>
       <button
