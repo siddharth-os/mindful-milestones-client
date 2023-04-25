@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getConfig, initUrl } from "../auth/auth";
+import { convertDate } from "./dateConverter";
 import TaskList from "./taskList";
 
 export default function Chat(props) {
@@ -17,6 +18,7 @@ export default function Chat(props) {
             const did = localStorage.getItem('id');
             const res = await axios.post(initUrl+"/get/chats",{did,pid},config);
             setNewChats(res.data);
+            // console.log(res.data);
         } catch (error) {
             console.log(error);
         }
@@ -84,9 +86,9 @@ export default function Chat(props) {
           <ul>
             {chats.map((ele, index) => {
               if (ele.sentfrom === 1) {
-                return <li style={liStyleDoc}>{ele.msg} <small style={{display:"block",color:"gray",textAlign:"right",marginTop:"1rem"}}>{ele.sentwhen.substring(14,19)} <i class="fa-solid fa-check-double"></i></small></li>;
+                return <li style={liStyleDoc}>{ele.msg} <small style={{display:"block",color:"gray",textAlign:"right",marginTop:"1rem"}}>{convertDate(ele.sentwhen)} <i class="fa-solid fa-check-double"></i></small></li>;
               } else {
-                return <li style={liStylePat}>{ele.msg} <small style={{display:"block",color:"gray",textAlign:"left",marginTop:"1rem"}}>{ele.sentwhen.substring(14,19)} <i class="fa-solid fa-check-double"></i></small></li>;
+                return <li style={liStylePat}>{ele.msg} <small style={{display:"block",color:"gray",textAlign:"left",marginTop:"1rem"}}>{convertDate(ele.sentwhen)} <i class="fa-solid fa-check-double"></i></small></li>;
               }
             })}
           </ul>

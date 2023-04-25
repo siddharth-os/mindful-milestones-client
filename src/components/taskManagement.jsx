@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getConfig, initUrl } from "../auth/auth";
-import AudioLinkList from "./AudioLinkList";
+import ArticleLinkList from "./articleLinkList";
 import TaskList from "./taskList";
 import VideoLinkList from "./VideoLinkList";
 
@@ -59,10 +59,10 @@ export default function TaskManagement() {
         <div className="col-12 col-md-4">
           <div style={sideBarStyle}>
             <h2 className="blue-heading" style={headingStyle}>
-              Audio
+              Article
             </h2>
             <hr />
-            <AudioLinkList />
+            <ArticleLinkList pid={id} />
           </div>
         </div>
       </div>

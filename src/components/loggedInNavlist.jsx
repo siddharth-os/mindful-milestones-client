@@ -8,11 +8,7 @@ export default function LoggedInNavList(){
               Home
           </a>
         </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">
-            Features
-          </a>
-        </li>
+
         <li className="nav-item">
           <a className="nav-link" href="/testimonials">
             Testimonials

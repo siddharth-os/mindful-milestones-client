@@ -10,7 +10,7 @@ export function logout(){
     localStorage.clear();
 }
 // export const initUrl="http://localhost:8080";
-export const initUrl = "https://78a9-103-156-19-229.ngrok-free.app";
+export const initUrl = "https://34c5-103-156-19-229.ngrok-free.app";
 
 export function checkForTokenExist(){
     return localStorage.getItem('jwtToken');

@@ -63,7 +63,7 @@ export default function AdminHome() {
           <div className="bg-light" style={cardStyle}>
                 <h3>Testimonials</h3>
                 <small>Count of Testimonials</small>
-                <h1 style={{fontSize:"4rem"}}>37</h1>
+                <h1 style={{fontSize:"4rem"}}>4</h1>
             </div>
           </div>
         </div>

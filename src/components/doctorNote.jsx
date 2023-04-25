@@ -6,9 +6,21 @@ import { getConfig, initUrl } from "../auth/auth";
 
 export default function Note(props) {
   const { pid } = props;
-  const [note, setNote] = useState(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-  );
+  const did = localStorage.getItem('id');
+  const [note, setNote] = useState("");
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try {
+        const config = getConfig();
+        const res = await axios.post(initUrl+"/getnote/consult",{pid:pid,did:did,note:null},config);
+        setNote(res.data);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData();
+  },[])
   const headingStyle = {
     color: "#19376D",
     background: "#FDF4F5",
@@ -27,6 +39,15 @@ export default function Note(props) {
     borderRadius: "20px",
     marginBottom: "1rem",
   };
+  const handleNoteSubmit = async ()=>{
+    try {
+      const config = getConfig();
+      const res = await axios.post(initUrl+"/setnote/consult",{pid:pid,did:did,note:note},config);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="container col-md-4" style={{}}>
       <form>
@@ -43,7 +64,7 @@ export default function Note(props) {
             style={{background: "#e8cccc",borderRadius: "0",height:"250px" ,color:"#800000"}}
           ></textarea>
           {/* <i class="fa-solid fa-floppy-disk blue-heading" style={{fontSize:"1.5rem",cursor:"pointer",position:"relative",bottom:"2rem",left:"1rem",borderRadius:"100%",background:"white",padding:"0.5rem"}}></i> */}
-          <h2 style={{color:"#800000",textAlign:"right",paddingRight:"1rem"}}><i class="fa-solid fa-floppy-disk" style={{cursor:"pointer"}}></i></h2>
+          <h2 style={{color:"#800000",textAlign:"right",paddingRight:"1rem"}} onClick={handleNoteSubmit}><i class="fa-solid fa-floppy-disk" style={{cursor:"pointer"}}></i></h2>
         </div>
       </form>
     </div>

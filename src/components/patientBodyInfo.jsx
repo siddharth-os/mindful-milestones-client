@@ -12,7 +12,6 @@ export default function PatientBodyInfo(props){
       try {
         const config = getConfig();
         const res = await axios.post(initUrl+"/get/patient/"+pid,{},config);
-        console.log(res.data);
         setDetail(res.data);
       } catch (error) {
         console.log(error);

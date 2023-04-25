@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { elementAcceptingRef } from "@mui/utils";
 
-export default function VideoLinkList(props) {
+export default function ArticleLinkList(props) {
   const pid=props.pid;
   const l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 1, 1, 1, 1, 1];
   const [newTask, setNewTask] = useState("");
@@ -16,7 +16,7 @@ export default function VideoLinkList(props) {
   const fetchData = async (e)=>{
     try {
       const config = getConfig();
-      const res = await axios.post(initUrl+"/getall/tesks/typetwo",{},config);
+      const res = await axios.post(initUrl+"/getall/tesks/typethree",{},config);
       setTaskList(res.data);
       console.log(res.data);
     } catch (error) {
@@ -36,7 +36,7 @@ export default function VideoLinkList(props) {
     try {
       if(newTask.length>0){
         const config = getConfig();
-        const res = await axios.post(initUrl+"/task/add",{tasktype:2,tasktext:newTask,tasklink:newTaskLink},config);
+        const res = await axios.post(initUrl+"/task/add",{tasktype:3,tasktext:newTask,tasklink:newTaskLink},config);
         window.location.reload();
       }
       else{
@@ -76,7 +76,7 @@ export default function VideoLinkList(props) {
         <div>
         <TextField
           id="standard-basic"
-          label="Add Title Of Video"
+          label="Add Title Of Article"
           variant="standard"
           value={newTask}
           onChange={handleChangeActivity}
@@ -98,7 +98,7 @@ export default function VideoLinkList(props) {
           type="submit"
           style={{ margin: "1rem" }}
         >
-          <i class="fa-solid fa-plus">Add New Video</i>
+          <i class="fa-solid fa-plus">Add New Article</i>
         </button>
       </form>
     </div>

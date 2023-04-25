@@ -10,7 +10,7 @@ export default function PatientDashboardCard(props) {
   // const [tone,setTone]=useState(0);
   // const [ttwo,setTwo]=useState(0);
   // const [tthree,setThree]=useState(0);
-  const types = ["Task","Video","Audio"];
+  const types = ["Task","Video","Blog"];
   // const colorRound= ["#28328c","red","#0d6efd"];
   const colorRound= ["red","yellow","green"];
   useEffect(()=>{

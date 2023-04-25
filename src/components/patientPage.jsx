@@ -20,7 +20,6 @@ export default function PatientPage(){
         try {
           const config = getConfig();
           const res = await axios.post(initUrl+"/activate/patient/"+id,{},config);
-          console.log(res);
         } catch (error) {
           console.log(error);
         }

@@ -5,6 +5,8 @@ import { getConfig, initUrl } from "../auth/auth";
 export default function DoctorDashboardCard() {
   const [consult,setConsult]=useState("");
   const [waitlisted,setwaitlisted]=useState("");
+  const [activeList,setActiveList]=useState([]);
+  const [countPat,setCountPat]=useState(0);
     useEffect(()=>{
       const fetchData = async()=>{
         try {
@@ -16,6 +18,16 @@ export default function DoctorDashboardCard() {
           const res2 = await axios.post(initUrl+"/consult/blocked/"+did,{},config);
           // console.log(res2.data.length);
           setwaitlisted(res2.data.length);
+          const res3 = await axios.post(initUrl+"/consult/activ/"+did,{},config);
+          setActiveList(res3.data);
+          console.log(res3.data);
+          let count= 0;
+          res3.data.map((ele,index)=>{
+            if(ele.completed===0){
+              count=count+1;
+            }
+          })
+          setCountPat(count);
         } catch (error) {
           console.log(error);
         }
@@ -61,12 +73,13 @@ export default function DoctorDashboardCard() {
         <div className="row" style={{}}>
           <div className="col">
             <h1 style={{ textAlign: "center", fontSize: "4rem",color:"#FC2947" }}>
-            <i class="fa-solid fa-heart"></i>
+            {/* <i class="fa-solid fa-heart"></i> */}
+            <i class="fa-solid fa-triangle-exclamation"></i>
             </h1>
           </div>
           <div className="col" style={{ marginTop: "0.5rem" }}>
-            <h6 className="dark-blue-heading">Healthy</h6>
-            <h2 className="dark-blue-heading">5</h2>
+            <h6 className="dark-blue-heading">Caution</h6>
+            <h2 className="dark-blue-heading">{countPat}</h2>
           </div>
         </div>
       </div>
