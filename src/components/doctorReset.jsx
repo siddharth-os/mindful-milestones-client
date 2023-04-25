@@ -1,8 +1,8 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getConfig, initUrl } from "../auth/auth";
+import { getConfig, initUrl, isDoctor, logout } from "../auth/auth";
 import DoctorLogoutSideBar from "./doctorLogout";
 import DoctorMilestoneCard from "./doctorMilestoneCard";
 import DoctorSideBarCard from "./doctorSideBarCard";
@@ -14,6 +14,13 @@ export default function DoctorReset(){
     const [password2,setPassword2] = useState("");
     const [newPassword,setNewPassword]=useState("");
     const navigate = useNavigate();
+
+    useEffect(()=>{
+      if(!isDoctor()){
+        logout();
+        navigate("/doctor/login");
+      }
+    },[])
     const sideBarStyle2={
         backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
         margin:"1rem auto"

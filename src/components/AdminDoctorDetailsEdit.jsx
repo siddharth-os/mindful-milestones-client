@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import AdminSidebar from "./adminSidebar";
-import { getConfig, initUrl } from "../auth/auth";
+import { getConfig, initUrl, isAdmin, logout } from "../auth/auth";
 import { useEffect } from "react";
 
 export default function AdminDoctorDetailsEdit(props){
@@ -15,17 +15,28 @@ export default function AdminDoctorDetailsEdit(props){
     const [specs, setSpecs] = useState();
     const bDate = "1999/10/16";
     useEffect(() => {
-        fetchData();
+        if(!isAdmin()){
+          logout();
+          navigate("/admin/login");
+        }
+        else{
+          fetchData();
+        }
+        
       }, []);
       const fetchData = async () => {
-        const config = getConfig();
-        const result = await axios.post(initUrl + "/doc/get/" + did, {},config);
-        console.log(result.data.email);
-        setUsername(result.data.name);
-        setEmail(result.data.email);
-        setLic(result.data.lic);
-        setQual(result.data.qual);
-        setSpecs(result.data.specs);
+        try {
+          const config = getConfig();
+          const result = await axios.post(initUrl + "/doc/get/" + did, {},config);
+          console.log(result.data.email);
+          setUsername(result.data.name);
+          setEmail(result.data.email);
+          setLic(result.data.lic);
+          setQual(result.data.qual);
+          setSpecs(result.data.specs);
+        } catch (error) {
+          console.log(error);
+        }
       };
       const navigate = useNavigate();
       const handleSubmit = async (e)=>{

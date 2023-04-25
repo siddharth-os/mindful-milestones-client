@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { isDoctor, logout } from "../auth/auth";
 import DoctorDashboardCard from "./doctorDashboardCard";
@@ -14,10 +14,12 @@ export default function DoctorHome() {
     backgroundColor:"#FDF4F5",padding:"1rem",borderRadius:"20px",boxShadow:"8px 8px 8px gray",
     
   }
-  if(!isDoctor()){
-    logout();
-    navigate("/doctor/login");
-  }
+  useEffect(()=>{
+    if(!isDoctor()){
+      logout();
+      navigate("/doctor/login");
+    }
+  },[])
   return (
     <div className="container row" style={{margin:"1rem auto"}}>
       <div className="col-12 col-md-4 doc-sidebar-main" style={sideBarStyle}>

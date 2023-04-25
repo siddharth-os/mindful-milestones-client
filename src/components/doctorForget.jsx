@@ -4,11 +4,16 @@ import Avatar from "@mui/material/Avatar";
 import {Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { getConfig, initUrl, isAdmin, isDoctor } from "../auth/auth";
+import { getConfig, initUrl, isAdmin, isDoctor, isLoggedIn, logout } from "../auth/auth";
 export default function DoctorForget() {
   const [email, setEmail] = useState("");
   const [email2, setEmail2] = useState("");
   const navigate = useNavigate();
+  useEffect(()=>{
+    if(isLoggedIn()){
+      logout();
+    }
+  },[]);
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {

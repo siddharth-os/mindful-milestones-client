@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AdminSidebar from "./adminSidebar";
-import { getConfig, initUrl } from "../auth/auth";
+import { getConfig, initUrl, isAdmin, logout } from "../auth/auth";
 export default function AddDoctor() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +13,12 @@ export default function AddDoctor() {
   const [specs, setSpecs] = useState("");
   const bDate = "1999/10/16";
   const navigate=useNavigate();
+  useEffect(()=>{
+    if(!isAdmin()){
+      logout();
+      navigate("/admin/login");
+    }
+  },[]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // const password = username.substring(0, 4) + bDate.substring(0,4);

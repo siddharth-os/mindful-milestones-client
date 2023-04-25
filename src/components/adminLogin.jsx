@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { checkForAdminTokenExist, initUrl, isAdmin, isDoctor, isTokenExist } from "../auth/auth";
+import { checkForAdminTokenExist, initUrl, isAdmin, isDoctor, isTokenExist, logout } from "../auth/auth";
 import AdminHome from "./adminHome";
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -16,7 +16,8 @@ export default function AdminLogin() {
       navigate("/admin/home");
     }
     if(isDoctor()){
-      navigate("/doctor/home");
+      logout();
+      navigate("/admin/login");
     }
   },[]);
   const handleSubmit = async(e)=>{

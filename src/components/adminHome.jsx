@@ -19,10 +19,10 @@ export default function AdminHome() {
     const navigate = useNavigate();
     useEffect(()=>{
       if(!isAdmin()){
-        // alert("Not Authenticated");
         logout();
-        navigate("/");
+        navigate("/admin/login");
       }
+      else{
       const fetchAllDoctors=async()=>{
         try {
           const config = getConfig();
@@ -37,6 +37,7 @@ export default function AdminHome() {
         }
       };
       fetchAllDoctors();
+    }
     },[]);
   return (
     <div className="container row" style={{ margin: "0.5rem auto" }}>

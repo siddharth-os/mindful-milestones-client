@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getConfig, initUrl } from "../auth/auth";
+import { useNavigate, useParams } from "react-router-dom";
+import { getConfig, initUrl, isDoctor, logout } from "../auth/auth";
 import ArticleLinkList from "./articleLinkList";
 import TaskList from "./taskList";
 import VideoLinkList from "./VideoLinkList";
@@ -9,20 +9,27 @@ import VideoLinkList from "./VideoLinkList";
 export default function TaskManagement() {
   const {id}=useParams();
   const [detail,setDetail]=useState({});
+  const navigate = useNavigate();
   useEffect(()=>{
-    const fetchData = async ()=>{
-      try {
-        // const res = await axios.post(initUrl+"") 
-        const config = getConfig();
-        const res = await axios.post(initUrl+"/get/patient/"+id,{},config);
-        // console.log(res.data);
-        setDetail(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }   
-
-    fetchData();
+    if(!isDoctor()){
+      logout();
+      navigate("/doctor/login");
+    }
+    else{
+      const fetchData = async ()=>{
+        try {
+          // const res = await axios.post(initUrl+"") 
+          const config = getConfig();
+          const res = await axios.post(initUrl+"/get/patient/"+id,{},config);
+          // console.log(res.data);
+          setDetail(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }   
+  
+      fetchData();
+    }
   },[]);
   const sideBarStyle = {
     backgroundColor: "#FDF4F5",

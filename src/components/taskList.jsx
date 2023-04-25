@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import TaskCheckComponent from "./taskCheckComponent";
-import { getConfig, initUrl } from "../auth/auth";
+import { getConfig, initUrl, isDoctor, logout } from "../auth/auth";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,12 @@ export default function TaskList(props) {
     }
   }
   useEffect(()=>{
-    fetchData();
+    if(!isDoctor ()){
+      logout();
+      navigate("/doctor/login");
+    }
+    else
+      fetchData();
   },[])
   const handleChangeActivity = (e) => {
     setNewTask(e.target.value);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import VideoCheckComponent from "./videoCheckComponent";
-import { getConfig, initUrl } from "../auth/auth";
+import { getConfig, initUrl, isDoctor, logout } from "../auth/auth";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { elementAcceptingRef } from "@mui/utils";
@@ -26,7 +26,12 @@ export default function ArticleLinkList(props) {
     }
   }
   useEffect(()=>{
-    fetchData();
+    if(!isDoctor ()){
+      logout();
+      navigate("/doctor/login");
+    }
+    else
+      fetchData();
   },[])
   const handleChangeActivity = (e) => {
     setNewTask(e.target.value);

@@ -44,6 +44,7 @@ export default function Note(props) {
       const config = getConfig();
       const res = await axios.post(initUrl+"/setnote/consult",{pid:pid,did:did,note:note},config);
       console.log(res.data);
+      alert("Note Saved Successfully");
     } catch (error) {
       console.log(error);
     }
