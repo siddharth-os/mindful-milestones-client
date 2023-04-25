@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AdminSidebar from "./adminSidebar";
 import { getConfig, initUrl, isAdmin, logout } from "../auth/auth";
+import { validateLICString, validateMobileNumber } from "../auth/stringValid";
 export default function AddDoctor() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -25,15 +26,17 @@ export default function AddDoctor() {
     const password = "123";
     const cred = { username,email, role:1 };
     let config = getConfig();
-    const result = await axios.post(initUrl+"/doc/register",cred,config);
-    if(result){
-      const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
-      const res = await axios.post(initUrl+"/doc/add",details,config);
-      alert("Doctor added Successfully");
-      navigate("/admin/home");
-    }
-    console.log(result.data);
-    // //1 is Did
+      const result = await axios.post(initUrl+"/doc/register",cred,config);
+      if(result){
+        const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
+          try {
+            const res = await axios.post(initUrl+"/doc/add",details,config);
+            alert("Doctor added Successfully");
+            navigate("/admin/home");
+          } catch (error) {
+            console.log(error);
+          }
+      }
   };
   return (
     <div className="container row" style={{margin:"0.5rem auto"}}>

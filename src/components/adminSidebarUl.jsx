@@ -16,10 +16,10 @@ export default function AdminSideBarUl() {
         <a href="/admin/home"> <i class="fa-solid fa-desktop"></i> Dashboard</a>
       </li>
       <hr />
-      <li>
+      {/* <li>
         <a href="#"> <i class="fa-solid fa-user"></i> Profile</a>
       </li>
-      <hr />
+      <hr /> */}
       <li>
         <a href="/admin/add"> <i class="fa-solid fa-plus"></i> Add Doctor</a>
       </li>
