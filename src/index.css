@@ -2,9 +2,13 @@ body {
   /* background-color: #e5e5f7;
   /* opacity: 0.2; */
   /* e5e5f7 */
+  min-height: 400px;
+  margin-bottom: 100px;
+  clear: both;
   background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
   background-size: 9px 9px;
 }
+
 /*code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

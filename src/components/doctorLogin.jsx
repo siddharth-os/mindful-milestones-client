@@ -53,7 +53,7 @@ export default function DoctorLogin() {
             <h2>Doctor Login</h2>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">Username</label>
             <input
               type="text"
               class="form-control"

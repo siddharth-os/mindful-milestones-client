@@ -54,7 +54,7 @@ export default function AdminLogin() {
             <h2>Admin Login</h2>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            <label for="exampleInputEmail1">Username</label>
             <input
               type="text"
               class="form-control"
