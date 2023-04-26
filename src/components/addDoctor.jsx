@@ -26,17 +26,18 @@ export default function AddDoctor() {
     const password = "123";
     const cred = { username,email, role:1 };
     let config = getConfig();
+    try {
       const result = await axios.post(initUrl+"/doc/register",cred,config);
       if(result){
         const details = { did: result.data,name:username, bDate, email, lic, qual, specs };
-          try {
             const res = await axios.post(initUrl+"/doc/add",details,config);
             alert("Doctor added Successfully");
             navigate("/admin/home");
-          } catch (error) {
-            console.log(error);
-          }
       }
+    } catch (error) {
+      alert("Username or Email already exist");
+      console.log(error);
+    }
   };
   return (
     <div className="container row" style={{margin:"0.5rem auto"}}>

@@ -21,11 +21,11 @@ export default function Chat(props) {
             setNewChats(res.data);
             // console.log(res.data);
         } catch (error) {
+          
             console.log(error);
         }
     }
     fetchChat();
-
   },[chats])
   const sideBarStyle = {
     backgroundColor: "#FDF4F5",
