@@ -14,7 +14,7 @@ export default function PatientSeverity(props) {
           setScore(0);
         }
         else{
-          setScore(parseInt(res.data.score)*10);
+          setScore(Math.round(res.data.score*10));
         }
       } catch (error) {
         console.log(error);

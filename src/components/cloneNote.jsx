@@ -63,7 +63,7 @@ export default function CloneNote(props) {
             rows="3"
             value={note}
             onChange={(e)=>setNote(e.target.value)}
-            style={{background: "#e8cccc",borderRadius: "0",height:"75px" ,color:"#800000"}}
+            style={{background: "#e8cccc",borderRadius: "0",height:"85px" ,color:"#800000"}}
           ></textarea>
           {/* <i class="fa-solid fa-floppy-disk blue-heading" style={{fontSize:"1.5rem",cursor:"pointer",position:"relative",bottom:"2rem",left:"1rem",borderRadius:"100%",background:"white",padding:"0.5rem"}}></i> */}
           <h2 style={{color:"#800000",textAlign:"right",paddingRight:"1rem"}} onClick={handleNoteSubmit}><i class="fa-solid fa-floppy-disk" style={{cursor:"pointer"}}></i></h2>

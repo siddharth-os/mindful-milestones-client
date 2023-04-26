@@ -14,7 +14,7 @@ import axios from "axios";
 import Chat from "./chat";
 import ClonePatientDashboardCard from "./clonePatientDashboardCard";
 import Note from "./doctorNote";
-import CloneNote from "./cloneChat";
+import CloneNote from "./cloneNote";
 export default function PatientPageWithChat(){
     
     const {id}=useParams();

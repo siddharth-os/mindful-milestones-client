@@ -28,6 +28,12 @@ export default function AdminDoctorStats(props) {
     boxShadow: "6px 5px 8px gray",
     opacity: "1",
   };
+  const disabledCard = {
+    padding: "1rem",
+    paddingLeft: "2rem",
+    boxShadow: "6px 5px 8px gray",
+    opacity: "0.6",
+  }
   return (
     <div className="row" style={{marginTop:"1rem"}}>
       <div className="col-md-4">
@@ -45,10 +51,10 @@ export default function AdminDoctorStats(props) {
         </div>
       </div>
       <div className="col-md-4">
-        <div className="bg-light" style={cardStyle}>
-          <h3>Healthy</h3>
+        <div className="bg-light" style={disabledCard}>
+          <h3>TBD</h3>
           <h1 style={{ fontSize: "3rem" }}>7</h1>
-          <small>Almost Recovered</small>
+          <small>Accomplished</small>
         </div>
       </div>
     </div>

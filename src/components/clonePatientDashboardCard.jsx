@@ -45,7 +45,8 @@ export default function ClonePatientDashboardCard(props) {
   }
   const cardStyle = {
     backgroundColor: "#FDF4F5",
-    margin: "1rem",
+    // margin: "1rem",
+    marginBottom:"1.2rem",
     padding: "0.5rem",
     borderRadius: "20px",
     boxShadow: "8px 8px 8px gray",
@@ -59,11 +60,11 @@ export default function ClonePatientDashboardCard(props) {
         return(
           <div className="" style={cardStyle}>
           <div className="row" style={{}}>
-          <div className="col" style={{ marginTop: "0.5rem" }}>
+          <div className="col" style={{ marginTop: "0.5rem",borderRight:"dashed gray" }}>
               <h1 className="blue-heading" style={{textAlign:"center"}}>{types[index]}</h1>
-              <small>{ele.compl}/{ele.assig} completed</small>
+              <p style={{textAlign:"center"}}>{ele.compl}/{ele.assig} completed</p>
             </div>
-            <div className="col" >
+            <div className="col" style={{display:"flex",justifyContent:"center"}}>
               {ele.assig===0?<i class="fa-sharp fa-regular fa-circle-xmark" style={{fontSize:"6rem",color:"hsl(0, 100%, 87%)"}}></i>:
                   <CircularProgress variant="determinate" value={ele.compl===0?100:Math.round((ele.compl/ele.assig)*100)} style={{height:"100px",width:"100px",color:conditionalColor(ele.compl,ele.assig)}}>{10}</CircularProgress>}
             </div>
