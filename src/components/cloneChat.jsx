@@ -1,10 +1,11 @@
+import { height } from "@mui/system";
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getConfig, initUrl } from "../auth/auth";
 
-export default function Note(props) {
+export default function CloneNote(props) {
   const { pid } = props;
   const did = localStorage.getItem('id');
   const [note, setNote] = useState("");
@@ -50,7 +51,7 @@ export default function Note(props) {
     }
   }
   return (
-    <div className="container col-md-4" style={{}}>
+    <div className="container" style={{marginLeft:"1rem"}}>
       <form>
         <div class="form-group" style={{background: "#e8cccc",boxShadow:"5px 5px 5px gray"}}>
           <div>
@@ -62,7 +63,7 @@ export default function Note(props) {
             rows="3"
             value={note}
             onChange={(e)=>setNote(e.target.value)}
-            style={{background: "#e8cccc",borderRadius: "0",height:"250px" ,color:"#800000"}}
+            style={{background: "#e8cccc",borderRadius: "0",height:"75px" ,color:"#800000"}}
           ></textarea>
           {/* <i class="fa-solid fa-floppy-disk blue-heading" style={{fontSize:"1.5rem",cursor:"pointer",position:"relative",bottom:"2rem",left:"1rem",borderRadius:"100%",background:"white",padding:"0.5rem"}}></i> */}
           <h2 style={{color:"#800000",textAlign:"right",paddingRight:"1rem"}} onClick={handleNoteSubmit}><i class="fa-solid fa-floppy-disk" style={{cursor:"pointer"}}></i></h2>

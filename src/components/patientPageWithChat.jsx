@@ -12,6 +12,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getConfig, initUrl, isDoctor, logout } from "../auth/auth";
 import axios from "axios";
 import Chat from "./chat";
+import ClonePatientDashboardCard from "./clonePatientDashboardCard";
+import Note from "./doctorNote";
+import CloneNote from "./cloneChat";
 export default function PatientPageWithChat(){
     
     const {id}=useParams();
@@ -26,7 +29,7 @@ export default function PatientPageWithChat(){
           try {
             const config = getConfig();
             const res = await axios.post(initUrl+"/activate/patient/"+id,{},config);
-            console.log(res);
+            // console.log(res);
           } catch (error) {
             console.log(error);
           }
@@ -50,6 +53,13 @@ export default function PatientPageWithChat(){
         <PatientBackButton/>
       </div>
         <Chat pid={id}/>
+        <div
+      className="col"
+      style={{}}
+    >
+      <ClonePatientDashboardCard pid={id}/>
+      <CloneNote pid={id}/>
+      </div>
     </div>
     );
 }

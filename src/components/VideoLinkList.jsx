@@ -18,7 +18,7 @@ export default function VideoLinkList(props) {
       const config = getConfig();
       const res = await axios.post(initUrl+"/getall/tesks/typetwo",{},config);
       setTaskList(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       console.log(error);
       alert("Error Encountered");

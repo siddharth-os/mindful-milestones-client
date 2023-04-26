@@ -12,8 +12,8 @@ export default function DoctorsList() {
     const config = getConfig();
     const result = await axios.post(initUrl+"/doc/getall",{},config);
     setDocList(result.data);
-    console.log(docList);
-    console.log(result.data);
+    // console.log(docList);
+    // console.log(result.data);
   }
   console.log(docList);
   return (

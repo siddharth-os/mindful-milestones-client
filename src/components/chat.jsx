@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getConfig, initUrl } from "../auth/auth";
+import ClonePatientDashboardCard from "./clonePatientDashboardCard";
 import { convertDate } from "./dateConverter";
 import TaskList from "./taskList";
 
@@ -31,6 +32,8 @@ export default function Chat(props) {
     padding: "0.5rem",
     borderRadius: "20px",
     boxShadow: "8px 8px 8px gray",
+    position:"relative",
+    left:"0.8rem"
   };
   const liStylePat = {
     backgroundColor: "#EBC6C9",
@@ -60,7 +63,6 @@ export default function Chat(props) {
         const config =  getConfig();
         const did = localStorage.getItem('id');
         const res = await axios.post(initUrl+"/send/msg",{did,pid,msg:newMessage,sentfrom:1},config);
-        console.log(res.data);
         // console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(res.data[0].whensent));
         setNewMessage("");
     } catch (error) {
@@ -71,7 +73,7 @@ export default function Chat(props) {
     
     <div
       className="col-12 col-md-4 doc-sidebar-main"
-      style={{ margin: "0.1rem auto" }}
+      style={{ margin: "0.1rem auto", }}
     >
       <div style={sideBarStyle}>
         <hr />
