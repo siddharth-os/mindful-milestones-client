@@ -60,6 +60,7 @@ export default function AddDoctor() {
                 placeholder="Enter Username"
                 style={{ borderRadius: "0" }}
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -72,6 +73,7 @@ export default function AddDoctor() {
                 placeholder="Enter Username"
                 style={{ borderRadius: "0" }}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -84,6 +86,7 @@ export default function AddDoctor() {
                 placeholder="Enter License Number"
                 style={{ borderRadius: "0" }}
                 onChange={(e) => setLic(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -96,6 +99,7 @@ export default function AddDoctor() {
                 placeholder="Qualification"
                 style={{ borderRadius: "0" }}
                 onChange={(e) => setQual(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -108,6 +112,7 @@ export default function AddDoctor() {
                 placeholder="Qualification"
                 style={{ borderRadius: "0" }}
                 onChange={(e) => setSpecs(e.target.value)}
+                required
               />
             </div>
             {/* <Link to={`/admin/home`} style={{ textDecoration: "none" }}> */}

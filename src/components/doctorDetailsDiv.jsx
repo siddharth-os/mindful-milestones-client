@@ -31,6 +31,7 @@ export default function DoctorDetailsDiv(props) {
         <div className="col">
           <h3>{docDetail.name}</h3>
           <h6>Qual : {docDetail.qual}</h6>
+          <h6>Specs : {docDetail.specs}</h6>
           <h6>DOB : {docDetail.bDate}</h6>
           <h6>Email : {docDetail.email}</h6>
           <h6>License : {docDetail.lic}</h6>
